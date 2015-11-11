@@ -36,6 +36,11 @@
 		8935C15C1BF103B600C4E220 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C1551BF103B600C4E220 /* FMDatabaseQueue.m */; };
 		8935C15D1BF103B600C4E220 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C1581BF103B600C4E220 /* FMResultSet.m */; };
 		8935C1611BF103D600C4E220 /* DatabaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C1601BF103D600C4E220 /* DatabaseTool.m */; };
+		89FF89791BF3635B0026B532 /* DownLoadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89781BF3635B0026B532 /* DownLoadModel.m */; };
+		89FF897C1BF36BC30026B532 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FF897B1BF36BC30026B532 /* libsqlite3.tbd */; };
+		89FF898B1BF39A050026B532 /* DownManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89861BF39A050026B532 /* DownManagerViewController.m */; };
+		89FF898C1BF39A050026B532 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89881BF39A050026B532 /* FilesViewController.m */; };
+		89FF898F1BF39A2E0026B532 /* FilesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF898E1BF39A2E0026B532 /* FilesCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +124,16 @@
 		8935C1581BF103B600C4E220 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		8935C15F1BF103D600C4E220 /* DatabaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseTool.h; sourceTree = "<group>"; };
 		8935C1601BF103D600C4E220 /* DatabaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseTool.m; sourceTree = "<group>"; };
+		89FF89771BF3635B0026B532 /* DownLoadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadModel.h; sourceTree = "<group>"; };
+		89FF89781BF3635B0026B532 /* DownLoadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadModel.m; sourceTree = "<group>"; };
+		89FF897A1BF363910026B532 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		89FF897B1BF36BC30026B532 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		89FF89851BF39A050026B532 /* DownManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownManagerViewController.h; sourceTree = "<group>"; };
+		89FF89861BF39A050026B532 /* DownManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownManagerViewController.m; sourceTree = "<group>"; };
+		89FF89871BF39A050026B532 /* FilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesViewController.h; sourceTree = "<group>"; };
+		89FF89881BF39A050026B532 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
+		89FF898D1BF39A2E0026B532 /* FilesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesCell.h; sourceTree = "<group>"; };
+		89FF898E1BF39A2E0026B532 /* FilesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89FF897C1BF36BC30026B532 /* libsqlite3.tbd in Frameworks */,
 				8935C11D1BF1008E00C4E220 /* libz.1.2.5.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,7 +166,7 @@
 		8935C0B51BF0FFC800C4E220 = {
 			isa = PBXGroup;
 			children = (
-				8935C11C1BF1008E00C4E220 /* libz.1.2.5.tbd */,
+				89FF897A1BF363910026B532 /* PrefixHeader.pch */,
 				8935C0C01BF0FFC800C4E220 /* TFDownLoad */,
 				8935C0DA1BF0FFC800C4E220 /* TFDownLoadTests */,
 				8935C0E51BF0FFC800C4E220 /* TFDownLoadUITests */,
@@ -172,10 +188,13 @@
 			isa = PBXGroup;
 			children = (
 				8935C0F41BF1005900C4E220 /* Iib */,
+				89FF89831BF39A050026B532 /* Class */,
 				8935C0C41BF0FFC800C4E220 /* AppDelegate.h */,
 				8935C0C51BF0FFC800C4E220 /* AppDelegate.m */,
 				8935C0C71BF0FFC800C4E220 /* ViewController.h */,
 				8935C0C81BF0FFC800C4E220 /* ViewController.m */,
+				89FF89771BF3635B0026B532 /* DownLoadModel.h */,
+				89FF89781BF3635B0026B532 /* DownLoadModel.m */,
 				8935C0CA1BF0FFC800C4E220 /* Main.storyboard */,
 				8935C0CD1BF0FFC800C4E220 /* Assets.xcassets */,
 				8935C0CF1BF0FFC800C4E220 /* LaunchScreen.storyboard */,
@@ -188,6 +207,8 @@
 		8935C0C11BF0FFC800C4E220 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				89FF897B1BF36BC30026B532 /* libsqlite3.tbd */,
+				8935C11C1BF1008E00C4E220 /* libz.1.2.5.tbd */,
 				8935C0C21BF0FFC800C4E220 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -295,6 +316,43 @@
 				8935C1601BF103D600C4E220 /* DatabaseTool.m */,
 			);
 			path = DataBaseTool;
+			sourceTree = "<group>";
+		};
+		89FF89831BF39A050026B532 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				89FF89841BF39A050026B532 /* Controller */,
+				89FF89891BF39A050026B532 /* Model */,
+				89FF898A1BF39A050026B532 /* View */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		89FF89841BF39A050026B532 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				89FF89851BF39A050026B532 /* DownManagerViewController.h */,
+				89FF89861BF39A050026B532 /* DownManagerViewController.m */,
+				89FF89871BF39A050026B532 /* FilesViewController.h */,
+				89FF89881BF39A050026B532 /* FilesViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		89FF89891BF39A050026B532 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		89FF898A1BF39A050026B532 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				89FF898D1BF39A2E0026B532 /* FilesCell.h */,
+				89FF898E1BF39A2E0026B532 /* FilesCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,20 +490,24 @@
 				8935C1151BF1005900C4E220 /* ASIHTTPRequest.m in Sources */,
 				8935C1591BF103B600C4E220 /* FMDatabase.m in Sources */,
 				8935C1101BF1005900C4E220 /* ASIAuthenticationDialog.m in Sources */,
+				89FF898B1BF39A050026B532 /* DownManagerViewController.m in Sources */,
 				8935C1251BF101EE00C4E220 /* CommonHelper.m in Sources */,
 				8935C1141BF1005900C4E220 /* ASIFormDataRequest.m in Sources */,
 				8935C0C61BF0FFC800C4E220 /* AppDelegate.m in Sources */,
 				8935C15D1BF103B600C4E220 /* FMResultSet.m in Sources */,
+				89FF898C1BF39A050026B532 /* FilesViewController.m in Sources */,
 				8935C1271BF101EE00C4E220 /* FilesDownManage.m in Sources */,
 				8935C1261BF101EE00C4E220 /* FileModel.m in Sources */,
 				8935C1161BF1005900C4E220 /* ASIInputStream.m in Sources */,
 				8935C0C31BF0FFC800C4E220 /* main.m in Sources */,
 				8935C1171BF1005900C4E220 /* ASINetworkQueue.m in Sources */,
 				8935C1181BF1005900C4E220 /* ASINSStringAdditions.m in Sources */,
+				89FF898F1BF39A2E0026B532 /* FilesCell.m in Sources */,
 				8935C11A1BF1005900C4E220 /* Reachability.m in Sources */,
 				8935C15A1BF103B600C4E220 /* FMDatabaseAdditions.m in Sources */,
 				8935C1611BF103D600C4E220 /* DatabaseTool.m in Sources */,
 				8935C1121BF1005900C4E220 /* ASIDataDecompressor.m in Sources */,
+				89FF89791BF3635B0026B532 /* DownLoadModel.m in Sources */,
 				8935C15C1BF103B600C4E220 /* FMDatabaseQueue.m in Sources */,
 				8935C15B1BF103B600C4E220 /* FMDatabasePool.m in Sources */,
 				8935C1131BF1005900C4E220 /* ASIDownloadCache.m in Sources */,
@@ -590,6 +652,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = TFDownLoad/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -602,6 +665,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = TFDownLoad/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

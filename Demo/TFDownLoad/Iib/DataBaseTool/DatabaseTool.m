@@ -193,7 +193,7 @@ static FMDatabase *_db;
 +(BOOL)updateFileModeWhenDownFinish:(FileModel *)model
 {
     if (model.uniquenName == nil || model.uniquenName.length == 0) {
-        [IanAlert alertError:@"MovieId为空，跟新下载完毕列表失败"];
+//        [IanAlert alertError:@"MovieId为空，跟新下载完毕列表失败"];
         return NO;
     }
     
@@ -279,12 +279,12 @@ static FMDatabase *_db;
     FMResultSet *rs = [_db executeQuery:@"SELECT DISTINCT title,movieId,iconUrl from fileModel where isHadDown = ? order by id desc;",@(YES)];
     NSMutableArray * array = [NSMutableArray array];
     while (rs.next) {
-        DownedSeriesModel *model = [[DownedSeriesModel alloc]init];
-        model.title = [rs stringForColumn:@"title"] ;
-        model.movieId = [rs stringForColumn:@"movieId"];
-        model.iconUrl = [rs stringForColumn:@"iconUrl"];
-        model.seriesCount = [self getFileModelCountWithMovieId:model.movieId];
-        [array addObject:model];
+//        DownedSeriesModel *model = [[DownedSeriesModel alloc]init];
+//        model.title = [rs stringForColumn:@"title"] ;
+//        model.movieId = [rs stringForColumn:@"movieId"];
+//        model.iconUrl = [rs stringForColumn:@"iconUrl"];
+//        model.seriesCount = [self getFileModelCountWithMovieId:model.movieId];
+//        [array addObject:model];
     }
     [rs close];
     [_db close];

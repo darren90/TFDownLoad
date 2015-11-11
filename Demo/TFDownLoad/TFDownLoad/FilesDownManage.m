@@ -16,7 +16,7 @@
 
 #define TEMPPATH [CommonHelper getTempFolderPathWithBasepath:_basepath]
 
-@interface FilesDownManage()DataBaseTool
+@interface FilesDownManage()
 
 @property (nonatomic,strong) ASIHTTPRequest *request;
 
