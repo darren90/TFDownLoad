@@ -41,6 +41,7 @@
 		89FF898B1BF39A050026B532 /* DownManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89861BF39A050026B532 /* DownManagerViewController.m */; };
 		89FF898C1BF39A050026B532 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89881BF39A050026B532 /* FilesViewController.m */; };
 		89FF898F1BF39A2E0026B532 /* FilesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF898E1BF39A2E0026B532 /* FilesCell.m */; };
+		89FF89981BF4E5560026B532 /* ContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89971BF4E5560026B532 /* ContentModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,8 @@
 		89FF89881BF39A050026B532 /* FilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesViewController.m; sourceTree = "<group>"; };
 		89FF898D1BF39A2E0026B532 /* FilesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesCell.h; sourceTree = "<group>"; };
 		89FF898E1BF39A2E0026B532 /* FilesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesCell.m; sourceTree = "<group>"; };
+		89FF89961BF4E5560026B532 /* ContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentModel.h; sourceTree = "<group>"; };
+		89FF89971BF4E5560026B532 /* ContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +345,8 @@
 		89FF89891BF39A050026B532 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				89FF89961BF4E5560026B532 /* ContentModel.h */,
+				89FF89971BF4E5560026B532 /* ContentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 				8935C1151BF1005900C4E220 /* ASIHTTPRequest.m in Sources */,
 				8935C1591BF103B600C4E220 /* FMDatabase.m in Sources */,
 				8935C1101BF1005900C4E220 /* ASIAuthenticationDialog.m in Sources */,
+				89FF89981BF4E5560026B532 /* ContentModel.m in Sources */,
 				89FF898B1BF39A050026B532 /* DownManagerViewController.m in Sources */,
 				8935C1251BF101EE00C4E220 /* CommonHelper.m in Sources */,
 				8935C1141BF1005900C4E220 /* ASIFormDataRequest.m in Sources */,

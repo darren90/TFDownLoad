@@ -11,25 +11,10 @@
 @interface DownLoadModel : NSString
 
 typedef enum {//下载类型
-    DownLoading = 1,     // 正在下载
-    DownLoadWait = 2,    //等待下载
-    DownLoadStop = 3,    //已暂停
-} DownLoadType;
-
-typedef enum {//下载类型
     UrlM3u8 = 1,     // m3u8下载链接
     UrlHttp = 2,     // http下载链接
 } UrlType;
 
-typedef enum{
-    DownLoadStateNO = 1,//未开始下载
-    DownLoadStateing = 2,//下载完毕
-    DownLoadStateEnd = 3,//下载完毕
-}DownLoadState;
-
-@property (nonatomic, copy) NSString * movieId;
-@property (nonatomic,assign)int episode;
-/** 唯一的名字由movieId和episode组成 */
 @property (nonatomic, copy) NSString * uniquenName;
 @property (nonatomic, copy) NSString * title;
 @property (nonatomic,assign) float size;
@@ -50,9 +35,6 @@ typedef enum{
 @property (nonatomic,assign)BOOL isDowned;//
 /** 地址是否是有效的 */
 @property (nonatomic,assign)BOOL isInvalid;
-
-/** 下载状态:正在下载/未下载/下载完毕 */
-@property (nonatomic,assign)int downLoadState;
 
 
 /**

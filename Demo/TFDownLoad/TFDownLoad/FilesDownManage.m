@@ -391,6 +391,70 @@ static   FilesDownManage *sharedFilesDownManage = nil;
 #pragma mark -- 入口 --
 
 /**
+ *  加入下载列表--进行下载
+ *
+ *  @param downUrl     下载的链接
+ *  @param uniquenName 唯一的名字（保存文件用）
+ *  @param title     列表展示用的名字（展示下载及已完成列表用）
+ *  @param iconUrl     图片名字
+ */
+-(void)downFileUrl:(NSString *)downUrl uniquenName:(NSString *)uniquenName title:(NSString *)title iconUrl:(NSString *)iconUrl
+{
+
+    //如果是重新下载，则说明肯定该文件已经被下载完，或者有临时文件正在留着，所以检查一下这两个地方，存在则删除掉
+    NSString *path = @"Video";
+    NSString *name = uniquenName;//存储硬盘上的的名字
+    
+    self.TargetSubPath = path;
+    if (_fileInfo!=nil) {
+        _fileInfo = nil;
+    }
+    _fileInfo = [[FileModel alloc]init];
+    _fileInfo.fileName = name;
+    _fileInfo.fileURL = downUrl;
+    _fileInfo.iconUrl = iconUrl;
+    if ([_fileInfo.fileURL containsString:@"m3u8"]) {
+        _fileInfo.urlType = UrlM3u8;
+    }else{
+        _fileInfo.urlType = UrlHttp;
+    }
+    
+    NSDate *myDate = [NSDate date];
+    _fileInfo.time = [CommonHelper dateToString:myDate];
+    
+    path= [CommonHelper getTargetPathWithBasepath:_basepath subpath:path];//--/DownLoad/video
+    
+    path = [path stringByAppendingPathComponent:name];//--/DownLoad/video/4646
+    _fileInfo.targetPath = path ;
+    
+    _fileInfo.isDownloading=YES;
+    _fileInfo.willDownloading = YES;
+    _fileInfo.error = NO;
+    _fileInfo.isFirstReceived = YES;
+    
+    NSString *tempfilePath= [TEMPPATH stringByAppendingPathComponent: _fileInfo.fileName];//--/Documents/DownLoad/Temp
+    _fileInfo.tempPath = tempfilePath;
+    
+    BOOL result = [DatabaseTool isFileModelInDB:uniquenName];///已经下载过一次
+    if(result){//已经下载过一次该音乐
+        NSLog(@"--该文件已下载，是否重新下载？--");
+        return;
+    }
+    
+    //若不存在文件和临时文件，则是新的下载
+    [self.filelist addObject:_fileInfo];
+    
+    [self startLoad];
+    if(self.VCdelegate!=nil && [self.VCdelegate respondsToSelector:@selector(allowNextRequest)]) {
+        [self.VCdelegate allowNextRequest];
+    }else{
+        NSLog(@"--该文件成功添加到下载队列--");
+        return;
+    }
+    return;
+}
+#if 0
+/**
  *  加入下载--进行下载
  *
  *  @param downLoadModel 传入模型进行下载
@@ -408,11 +472,8 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     _fileInfo = [[FileModel alloc]init];
     _fileInfo.fileName = name;
     _fileInfo.fileURL = downLoadModel.downUrl;//@"http://v.jxvdy.com/sendfile/12fXj68Ql9UobMpbNdA4q-fUn6TEsFfi3ECSJHfpdhtyERNNUbhh-xr2V7YCd7euAusMiVJBCSBhqEwAeoFUv4KITqbvPw";//
-    _fileInfo.movieId = downLoadModel.movieId;
-    _fileInfo.uniquenName = [NSString stringWithFormat:@"%@%d",downLoadModel.movieId,downLoadModel.episode];
-    _fileInfo.iconUrl = downLoadModel.iconUrl;
-    _fileInfo.episode = downLoadModel.episode;
-    _fileInfo.title = [downLoadModel.title stringByReplacingOccurrencesOfString:@" " withString:@""];//替换空格
+      _fileInfo.iconUrl = downLoadModel.iconUrl;
+     _fileInfo.title = [downLoadModel.title stringByReplacingOccurrencesOfString:@" " withString:@""];//替换空格
     if ([_fileInfo.fileURL containsString:@"m3u8"] || [_fileInfo.fileURL containsString:@"tss=ios"]) {
         _fileInfo.urlType = UrlM3u8;
     }else{
@@ -453,6 +514,8 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     }
     return;
 }
+
+#endif
 
 #pragma mark - 开始下载
 -(void)startLoad{
@@ -616,8 +679,7 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     }
     
     long long totalSize = [[responseHeaders objectForKey:@"Content-Length"] longLongValue];
-    NSLog(@"-:%@%d--totalSize:%lld-url:%@-ourl-:%@-responseHeaders:%@",fileInfo.title,fileInfo.episode,totalSize,request.url.absoluteString,request.originalURL.absoluteString,responseHeaders);
-//    NSLog(@"--totalSize:%lld",totalSize);
+ //    NSLog(@"--totalSize:%lld",totalSize);
 
     NSString *len = [responseHeaders objectForKey:@"Content-Length"];
     NSLog(@"http--didReceiveResponseHeaders--：%@,%@,%@",fileInfo.fileSize,fileInfo.fileReceivedSize,len);
@@ -648,7 +710,6 @@ static   FilesDownManage *sharedFilesDownManage = nil;
         fileInfo.fileReceivedSize=[NSString stringWithFormat:@"%lld",[fileInfo.fileReceivedSize longLongValue]+bytes];
     }
    float progress = [CommonHelper getProgress:[fileInfo.fileSize longLongValue] currentSize:[fileInfo.fileReceivedSize longLongValue]];
-    NSLog(@"--http--progress--:%@-%d:%f",fileInfo.title,fileInfo.episode,progress);
     if([self.downloadDelegate respondsToSelector:@selector(updateCellProgress:)]){
         [self.downloadDelegate updateCellProgress:request];
     }
@@ -659,13 +720,10 @@ static   FilesDownManage *sharedFilesDownManage = nil;
 {
     FileModel *fileInfo=[request.userInfo objectForKey:@"File"];
     if (fileInfo.error) {
-//        if([self.downloadDelegate respondsToSelector:@selector(updateCellProgress:)]){
-//            [self.downloadDelegate updateCellProgress:request];
-//        }
         return;
     }
     
-    NSLog(@"---：%@%d下载结束---error:%@",fileInfo.title,fileInfo.episode,request.error);
+    NSLog(@"---：%@下载结束---error:%@",fileInfo.uniquenName,request.error);
     
     [self playDownloadSound];
     

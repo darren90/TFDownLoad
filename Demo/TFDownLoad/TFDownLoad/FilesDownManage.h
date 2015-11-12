@@ -13,6 +13,7 @@
 #import "FileModel.h"
 #import "DownLoadModel.h"
 #import <AVFoundation/AVAudioPlayer.h>
+#import "ContentModel.h"
 
 @interface FilesDownManage : NSObject<ASIHTTPRequestDelegate,ASIProgressDelegate>
 
@@ -37,7 +38,19 @@
  *
  *  @param downLoadModel 传入模型进行下载
  */
--(void)downFileUrl:(DownLoadModel *)downLoadModel;
+//-(void)downFileUrl:(DownLoadModel *)downLoadModel;
+-(void)downFileUrl:(ContentModel *)downLoadModel;
+
+/**
+ *  加入下载列表--进行下载
+ *
+ *  @param downUrl     下载的链接
+ *  @param uniquenName 唯一的名字（保存文件用）
+ *  @param title     列表展示用的名字（展示下载及已完成列表用）
+ *  @param iconUrl     图片名字
+ */
+-(void)downFileUrl:(NSString *)downUrl uniquenName:(NSString *)uniquenName title:(NSString *)title iconUrl:(NSString *)iconUrl;
+
 
 -(void)loadTempfiles;//将本地的未下载完成的临时文件加载到正在下载列表里,但是不接着开始下载
 -(void)loadFinishedfiles;//将本地已经下载完成的文件加载到已下载列表里

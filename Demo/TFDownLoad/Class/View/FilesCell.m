@@ -7,6 +7,8 @@
 //
 
 #import "FilesCell.h"
+#import "ContentModel.h"
+#import "FilesDownManage.h"
 
 @interface FilesCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
@@ -21,20 +23,27 @@
     // Initialization code
 }
 
+
+
+-(void)setModel:(ContentModel *)model
+{
+    _model = model;
+    
+    self.iconView.image = [UIImage imageNamed:model.iconUrl];
+    self.titleLabel.text = model.title;
+}
+
+
 /**
  *  下载按钮被点击
  *
  *  @param sender 按钮
  */
 - (IBAction)DownBtnClick:(UIButton *)sender {
-    
-    
+    NSLog(@"---downUrl:%@",self.model.downUrl);
+     [[FilesDownManage sharedFilesDownManage]downFileUrl:self.model];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
 
 @end

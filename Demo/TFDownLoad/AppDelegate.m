@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "FilesDownManage.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //下载 -- 程序一开始就启动 参数1：下载的路径，参数2：待定
+    [FilesDownManage sharedFilesDownManageWithBasepath:kDownDomanPath TargetPathArr:[NSArray arrayWithObject:@"DownLoads/Video"]];
+    
     return YES;
 }
 

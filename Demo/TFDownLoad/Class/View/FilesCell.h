@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ContentModel;
 @interface FilesCell : UITableViewCell
+
+
+
+
+@property (nonatomic,strong)ContentModel * model;
+
 
 @end
