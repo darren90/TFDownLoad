@@ -9,8 +9,6 @@
 #import "FilesDownManage.h"
 #import "Reachability.h"
 
-#import "DownLoadModel.h"
-
 //最大并发数
 #define MAXLINES  (1)
 
@@ -21,107 +19,39 @@
 @property (nonatomic,strong) ASIHTTPRequest *request;
 
 @property(nonatomic,copy)NSString *basepath;
-@property(nonatomic,copy)NSString *TargetSubPath;
 
-@property(nonatomic,strong)NSMutableArray *targetPathArray;
-@property(nonatomic,strong)AVAudioPlayer *buttonSound;//按钮声音
-@property(nonatomic,strong)AVAudioPlayer *downloadCompleteSound;//下载完成的声音
-@property(nonatomic,assign)BOOL isFistLoadSound;//是否第一次加载声音，静音
 @end
 
 @implementation FilesDownManage
 
 static   FilesDownManage *sharedFilesDownManage = nil;
 
--(void)playButtonSound
+/**
+ *  根据文件名字，得出文件的下载完毕的保存路径
+ *
+ *  @param name 文件的保存名字
+ *
+ *  @return 文件的真实路径
+ */
+-(NSString *)getTargetPath:(NSString *)name
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *audioAlert = [userDefaults valueForKey:@"kAudioAlertSetting"];
+    NSString *path = @"Video";
+    path= [CommonHelper getTargetPathWithBasepath:_basepath subpath:path];//--/DownLoad/video
+    path = [path stringByAppendingPathComponent:name];//--/DownLoad/video/4646
     
-    if( NO == [audioAlert boolValue] )  {
-        return;
-    }
-    NSURL *url=[[[NSBundle mainBundle]resourceURL] URLByAppendingPathComponent:@"btnEffect.wav"];
-    NSError *error;
-    if(self.buttonSound==nil) {
-        self.buttonSound=[[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-        if(!error)   {
-            NSLog(@"%@",[error description]);
-        }
-    }
-    if([audioAlert isEqualToString:@"YES"]||audioAlert==nil){//播放声音
-        if(!self.isFistLoadSound)  {
-            self.buttonSound.volume=1.0f;
-        }
-    } else {
-        self.buttonSound.volume=0.0f;
-    }
-    [self.buttonSound play];
+    return path;
 }
-
--(void)playDownloadSound
+/**
+ *  根据文件名字，得出文件的临时的保存路径
+ *
+ *  @param name 文件的保存名字
+ *
+ *  @return 文件的临时路径
+ */
+-(NSString *)getTempPath:(NSString *)name
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *result = [userDefaults valueForKey:@"kAudioAlertSetting"];
-    
-    if( NO == [result boolValue] )  {
-        return;
-    }
-    
-    NSURL *url=[[[NSBundle mainBundle]resourceURL] URLByAppendingPathComponent:@"download-complete.wav"];
-    NSError *error;
-    if(self.downloadCompleteSound==nil) {
-        self.downloadCompleteSound=[[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-        if(!error) {
-            NSLog(@"%@",[error description]);
-        }
-    }
-    if([result isEqualToString:@"YES"]||result==nil){//播放声音
-        if(!self.isFistLoadSound)  {
-            self.downloadCompleteSound.volume=1.0f;
-        }
-    } else {
-        self.downloadCompleteSound.volume=0.0f;
-    }
-    [self.downloadCompleteSound play];
-}
--(NSArray *)sortbyTime:(NSArray *)array{
-    NSArray *sorteArray1 = [array sortedArrayUsingComparator:^(id obj1, id obj2){
-        FileModel *file1 = (FileModel *)obj1;
-        FileModel *file2 = (FileModel *)obj2;
-        NSDate *date1 = [CommonHelper makeDate:file1.time];
-        NSDate *date2 = [CommonHelper makeDate:file2.time];
-        if ([[date1 earlierDate:date2]isEqualToDate:date2]) {
-            return (NSComparisonResult)NSOrderedDescending;
-        }
-        
-        if ([[date1 earlierDate:date2]isEqualToDate:date1]) {
-            return (NSComparisonResult)NSOrderedAscending;
-        }
-        
-        return (NSComparisonResult)NSOrderedSame;
-    }];
-    return sorteArray1;
-}
--(NSArray *)sortRequestArrbyTime:(NSArray *)array{
-    NSArray *sorteArray1 = [array sortedArrayUsingComparator:^(id obj1, id obj2){
-        //
-        FileModel* file1 =   [((ASIHTTPRequest *)obj1).userInfo objectForKey:@"File"];
-        FileModel *file2 =   [((ASIHTTPRequest *)obj2).userInfo objectForKey:@"File"];
-        
-        NSDate *date1 = [CommonHelper makeDate:file1.time];
-        NSDate *date2 = [CommonHelper makeDate:file2.time];
-        if ([[date1 earlierDate:date2]isEqualToDate:date2]) {
-            return (NSComparisonResult)NSOrderedDescending;
-        }
-        
-        if ([[date1 earlierDate:date2]isEqualToDate:date1]) {
-            return (NSComparisonResult)NSOrderedAscending;
-        }
-        
-        return (NSComparisonResult)NSOrderedSame;
-    }];
-    return sorteArray1;
+    NSString *tempPath= [TEMPPATH stringByAppendingPathComponent:name];//--/Documents/DownLoad/Temp
+    return tempPath;
 }
 
 #pragma mark - 存储数据
@@ -153,7 +83,7 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     
     fileInfo.isFirstReceived=YES;
     NSFileManager *fileManager=[NSFileManager defaultManager];
-    NSData *fileData=[fileManager contentsAtPath:fileInfo.tempPath];
+    NSData *fileData=[fileManager contentsAtPath:[self getTempPath:fileInfo.fileName]];
     NSInteger receivedDataLength=[fileData length];
     fileInfo.fileReceivedSize=[NSString stringWithFormat:@"%ld",(long)receivedDataLength];
     
@@ -163,8 +93,8 @@ static   FilesDownManage *sharedFilesDownManage = nil;
      ASIHTTPRequest *request=[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:fileInfo.fileURL]];
  
     request.delegate=self;
-    [request setDownloadDestinationPath:[fileInfo targetPath]];
-    [request setTemporaryFileDownloadPath:fileInfo.tempPath];
+    [request setDownloadDestinationPath:[self getTargetPath:fileInfo.fileName]];
+    [request setTemporaryFileDownloadPath:[self getTempPath:fileInfo.fileName]];
     [request setDownloadProgressDelegate:self];
     [request setNumberOfTimesToRetryOnTimeout:2];
     // [request setShouldContinueWhenAppEntersBackground:YES];
@@ -301,9 +231,9 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     NSFileManager *fileManager=[NSFileManager defaultManager];
     NSError *error;
     FileModel *fileInfo=(FileModel*)[request.userInfo objectForKey:@"File"];
-    NSString *path=fileInfo.tempPath;
+    NSString *path = [self getTempPath:fileInfo.fileName];
     
-    [DatabaseTool delFileModelWithUniquenName:fileInfo.uniquenName];//删除数据库记录
+    [DatabaseTool delFileModelWithUniquenName:fileInfo.fileName];//删除数据库记录
     [fileManager removeItemAtPath:path error:&error]; //删除临时文件
  
     if(!error)  {
@@ -326,7 +256,6 @@ static   FilesDownManage *sharedFilesDownManage = nil;
         // [self startWaitingRequest];
         [self startLoad];
     }
-//    self.count = (int)[_filelist count];
 }
 
 -(void)clearAllFinished{
@@ -340,8 +269,8 @@ static   FilesDownManage *sharedFilesDownManage = nil;
         if([request isExecuting])
             [request cancel];
         FileModel *fileInfo=(FileModel*)[request.userInfo objectForKey:@"File"];
-        NSString *path=fileInfo.tempPath;;
-        [DatabaseTool delFileModelWithUniquenName:fileInfo.uniquenName];//删除数据库记录
+        NSString *path= [self getTempPath:fileInfo.fileName];
+        [DatabaseTool delFileModelWithUniquenName:fileInfo.fileName];//删除数据库记录
         [fileManager removeItemAtPath:path error:&error];
  
         if(!error)  {
@@ -360,7 +289,6 @@ static   FilesDownManage *sharedFilesDownManage = nil;
 -(void)loadTempfiles
 {
     self.basepath = kDownDomanPath ;//@"DownLoads";
-    self.TargetSubPath = @"Video";
     NSArray *array = [DatabaseTool getFileModeArray:NO];//拿到未下载的数据
     [_filelist addObjectsFromArray:array];
     [self startLoad];
@@ -388,8 +316,12 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     [_finishedlist removeObject:selectFile];
     
 }
-#pragma mark -- 入口 --
 
+#pragma mark -- 入口 --
+-(void)downFileUrl:(ContentModel *)model
+{
+    [self downFileUrl:model.downUrl fileName:model.uniquenName title:model.title iconUrl:model.iconUrl];
+}
 /**
  *  加入下载列表--进行下载
  *
@@ -398,14 +330,12 @@ static   FilesDownManage *sharedFilesDownManage = nil;
  *  @param title     列表展示用的名字（展示下载及已完成列表用）
  *  @param iconUrl     图片名字
  */
--(void)downFileUrl:(NSString *)downUrl uniquenName:(NSString *)uniquenName title:(NSString *)title iconUrl:(NSString *)iconUrl
+-(void)downFileUrl:(NSString *)downUrl fileName:(NSString *)fileName title:(NSString *)title iconUrl:(NSString *)iconUrl
 {
 
     //如果是重新下载，则说明肯定该文件已经被下载完，或者有临时文件正在留着，所以检查一下这两个地方，存在则删除掉
-    NSString *path = @"Video";
-    NSString *name = uniquenName;//存储硬盘上的的名字
-    
-    self.TargetSubPath = path;
+    NSString *name = fileName;//存储硬盘上的的名字
+ 
     if (_fileInfo!=nil) {
         _fileInfo = nil;
     }
@@ -414,28 +344,17 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     _fileInfo.fileURL = downUrl;
     _fileInfo.iconUrl = iconUrl;
     if ([_fileInfo.fileURL containsString:@"m3u8"]) {
-        _fileInfo.urlType = UrlM3u8;
+        _fileInfo.urlType = FileUrlM3u8;
     }else{
-        _fileInfo.urlType = UrlHttp;
+        _fileInfo.urlType = FileUrlHttp;
     }
-    
-    NSDate *myDate = [NSDate date];
-    _fileInfo.time = [CommonHelper dateToString:myDate];
-    
-    path= [CommonHelper getTargetPathWithBasepath:_basepath subpath:path];//--/DownLoad/video
-    
-    path = [path stringByAppendingPathComponent:name];//--/DownLoad/video/4646
-    _fileInfo.targetPath = path ;
     
     _fileInfo.isDownloading=YES;
     _fileInfo.willDownloading = YES;
     _fileInfo.error = NO;
     _fileInfo.isFirstReceived = YES;
     
-    NSString *tempfilePath= [TEMPPATH stringByAppendingPathComponent: _fileInfo.fileName];//--/Documents/DownLoad/Temp
-    _fileInfo.tempPath = tempfilePath;
-    
-    BOOL result = [DatabaseTool isFileModelInDB:uniquenName];///已经下载过一次
+    BOOL result = [DatabaseTool isFileModelInDB:fileName];///已经下载过一次
     if(result){//已经下载过一次该音乐
         NSLog(@"--该文件已下载，是否重新下载？--");
         return;
@@ -453,69 +372,6 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     }
     return;
 }
-#if 0
-/**
- *  加入下载--进行下载
- *
- *  @param downLoadModel 传入模型进行下载
- */
--(void)downFileUrl:(DownLoadModel *)downLoadModel
-{
-    //如果是重新下载，则说明肯定该文件已经被下载完，或者有临时文件正在留着，所以检查一下这两个地方，存在则删除掉
-    NSString *path = @"Video";
-    NSString *name = [NSString stringWithFormat:@"%@.mp4",downLoadModel.uniquenName];//存储硬盘上的的名字
- 
-    self.TargetSubPath = path;
-    if (_fileInfo!=nil) {
-        _fileInfo = nil;
-    }
-    _fileInfo = [[FileModel alloc]init];
-    _fileInfo.fileName = name;
-    _fileInfo.fileURL = downLoadModel.downUrl;//@"http://v.jxvdy.com/sendfile/12fXj68Ql9UobMpbNdA4q-fUn6TEsFfi3ECSJHfpdhtyERNNUbhh-xr2V7YCd7euAusMiVJBCSBhqEwAeoFUv4KITqbvPw";//
-      _fileInfo.iconUrl = downLoadModel.iconUrl;
-     _fileInfo.title = [downLoadModel.title stringByReplacingOccurrencesOfString:@" " withString:@""];//替换空格
-    if ([_fileInfo.fileURL containsString:@"m3u8"] || [_fileInfo.fileURL containsString:@"tss=ios"]) {
-        _fileInfo.urlType = UrlM3u8;
-    }else{
-        _fileInfo.urlType = UrlHttp;
-    }
-    
-    NSDate *myDate = [NSDate date];
-    _fileInfo.time = [CommonHelper dateToString:myDate];
-    
-    path= [CommonHelper getTargetPathWithBasepath:_basepath subpath:path];//--/DownLoad/video
-    
-    path = [path stringByAppendingPathComponent:name];//--/DownLoad/video/4646
-    _fileInfo.targetPath = path ;
- 
-    _fileInfo.isDownloading=YES;
-    _fileInfo.willDownloading = YES;
-    _fileInfo.error = NO;
-    _fileInfo.isFirstReceived = YES;
-    
-    NSString *tempfilePath= [TEMPPATH stringByAppendingPathComponent: _fileInfo.fileName];//--/Documents/DownLoad/Temp
-    _fileInfo.tempPath = tempfilePath;
-    
-    BOOL result = [DatabaseTool isFileModelInDB:downLoadModel.uniquenName];///已经下载过一次
-    if(result){//已经下载过一次该音乐
-        NSLog(@"--该文件已下载，是否重新下载？--");
-        return;
-    }
-    
-    //若不存在文件和临时文件，则是新的下载
-    [self.filelist addObject:_fileInfo];
-    
-    [self startLoad];
-    if(self.VCdelegate!=nil && [self.VCdelegate respondsToSelector:@selector(allowNextRequest)]) {
-        [self.VCdelegate allowNextRequest];
-    }else{
-        NSLog(@"--该文件成功添加到下载队列--");
-        return;
-    }
-    return;
-}
-
-#endif
 
 #pragma mark - 开始下载
 -(void)startLoad{
@@ -562,12 +418,10 @@ static   FilesDownManage *sharedFilesDownManage = nil;
 #pragma mark -- init methods --
 -(id)initWithBasepath:(NSString *)basepath TargetPathArr:(NSArray *)targetpaths{
     self.basepath = basepath;
-    _targetPathArray = [[NSMutableArray alloc]initWithArray:targetpaths];
  
     _filelist = [NSMutableArray array];
     _downinglist = [NSMutableArray array];
     _finishedlist = [NSMutableArray array];
-    self.isFistLoadSound=YES;
     return  [self init];
 }
 
@@ -608,7 +462,7 @@ static   FilesDownManage *sharedFilesDownManage = nil;
         [sharedFilesDownManage loadFinishedfiles];
     }
     sharedFilesDownManage.basepath = basepath;
-    sharedFilesDownManage.targetPathArray =[NSMutableArray arrayWithArray:targetpaths];
+//    sharedFilesDownManage.targetPathArray =[NSMutableArray arrayWithArray:targetpaths];
     return  sharedFilesDownManage;
 }
 
@@ -678,9 +532,6 @@ static   FilesDownManage *sharedFilesDownManage = nil;
         return;
     }
     
-    long long totalSize = [[responseHeaders objectForKey:@"Content-Length"] longLongValue];
- //    NSLog(@"--totalSize:%lld",totalSize);
-
     NSString *len = [responseHeaders objectForKey:@"Content-Length"];
     NSLog(@"http--didReceiveResponseHeaders--：%@,%@,%@",fileInfo.fileSize,fileInfo.fileReceivedSize,len);
     //这个信息头，首次收到的为总大小，那么后来续传时收到的大小为肯定小于或等于首次的值，则忽略
@@ -690,8 +541,6 @@ static   FilesDownManage *sharedFilesDownManage = nil;
         fileInfo.fileSize = [NSString stringWithFormat:@"%lld",  [len longLongValue]];
         [DatabaseTool updateFileModeTotalSize:fileInfo];
     }
-    
-//    [self saveDownloadFile:fileInfo];
 }
 
 -(void)setProgress:(float)newProgress
@@ -709,7 +558,6 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     }else if(!fileInfo.isFirstReceived) {
         fileInfo.fileReceivedSize=[NSString stringWithFormat:@"%lld",[fileInfo.fileReceivedSize longLongValue]+bytes];
     }
-   float progress = [CommonHelper getProgress:[fileInfo.fileSize longLongValue] currentSize:[fileInfo.fileReceivedSize longLongValue]];
     if([self.downloadDelegate respondsToSelector:@selector(updateCellProgress:)]){
         [self.downloadDelegate updateCellProgress:request];
     }
@@ -723,9 +571,7 @@ static   FilesDownManage *sharedFilesDownManage = nil;
         return;
     }
     
-    NSLog(@"---：%@下载结束---error:%@",fileInfo.uniquenName,request.error);
-    
-    [self playDownloadSound];
+    NSLog(@"---：%@下载结束---error:%@",fileInfo.fileName,request.error);
     
     [_finishedlist addObject:fileInfo];
  
@@ -752,6 +598,4 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     }
     [self startLoad];
 }
-
-
 @end

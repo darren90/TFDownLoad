@@ -41,6 +41,8 @@
  */
 - (IBAction)DownBtnClick:(UIButton *)sender {
     NSLog(@"---downUrl:%@",self.model.downUrl);
+    self.DownBtn.hidden = YES;
+    NSLog(@"-加入下载列表成功r-----");
      [[FilesDownManage sharedFilesDownManage]downFileUrl:self.model];
 }
 

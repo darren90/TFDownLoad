@@ -33,9 +33,9 @@ static FMDatabase *_db;
     
     [_db setShouldCacheStatements:YES];
  
-    //1：新下载  uniquenName 主键
+    //1：新下载  fileName 主键
     if (![_db tableExists:@"fileModel"]) {
-        [_db executeUpdate:@"CREATE TABLE if not exists fileModel (id integer primary key autoincrement,uniquenName TEXT,movieId TEXT,episode integer,fileName TEXT,title TEXT,fileURL TEXT,iconUrl TEXT,targetPath TEXT,tempPath TEXT,filesize TEXT,filerecievesize TEXT,basepath TEXT,time TEXT,isHadDown integer,urlType integer)"];
+        [_db executeUpdate:@"CREATE TABLE if not exists fileModel (id integer primary key autoincrement,fileName TEXT,title TEXT,fileURL TEXT,iconUrl TEXT,filesize TEXT,filerecievesize TEXT,isHadDown integer,urlType integer)"];
     }
       
     [_db close];
@@ -45,6 +45,11 @@ static FMDatabase *_db;
 /*******************************5 -- 新 - 下载2.0****************************************/
 +(BOOL)addFileModelWithModel:(FileModel *)model
 {
+    if (model == nil || model.fileName == nil || model.fileName.length == 0) {
+        NSLog(@"加入下载列表失败-ID为空");
+        return NO;
+    }
+    
     if (![_db open]) {
         [_db close];
         NSAssert(NO, @"数据库打开失败");
@@ -52,20 +57,16 @@ static FMDatabase *_db;
     }
     [_db setShouldCacheStatements:YES];
     
-    if (model == nil || model.uniquenName == nil || model.uniquenName.length == 0) {
-        NSLog(@"加入下载列表失败-ID为空");
-        return NO;
-    }
- 
     //1:判断是否已经加入到数据库中
-    int count = [_db intForQuery:@"SELECT COUNT(uniquenName) FROM fileModel where uniquenName = ?;",model.uniquenName];
+    int count = [_db intForQuery:@"SELECT COUNT(fileName) FROM fileModel where fileName = ?;",model.fileName];
     
     if (count >= 1) {
         NSLog(@"-已经在下载列表中--");
         return NO;
     }
     //2:存储
-    BOOL result = [_db executeUpdate:@"insert into fileModel (uniquenName,movieId,episode,fileName,fileURL,targetPath,tempPath,filesize,filerecievesize ,basepath,time,isHadDown,iconUrl,title,urlType) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);",model.uniquenName,model.movieId,@(model.episode),model.fileName,model.fileURL,model.targetPath,model.tempPath,model.fileSize,model.fileReceivedSize,kDownDomanPath,model.time,@(NO),model.iconUrl,model.title,@(model.urlType)];
+//    fileName title TEXT,fileURL TEXT,iconUrl TEXT,filesize TEXT,filerecievesize TEXT,isHadDown integer,urlType integer
+    BOOL result = [_db executeUpdate:@"insert into fileModel (fileName,title,fileURL,iconUrl,filesize,filerecievesize,isHadDown,urlType) values (?,?,?,?,?,?,?,?);",model.fileName,model.title,model.fileURL,model.iconUrl,model.fileSize,model.fileReceivedSize,@(model.isHadDown),@(model.urlType)];
     
     [_db close];
     if (result) {
@@ -94,7 +95,6 @@ static FMDatabase *_db;
     [_db setShouldCacheStatements:YES];
      
     FMResultSet *rs = [_db executeQuery:@"SELECT * FROM fileModel where isHadDown = ? order by id asc;",@(isHadDown)];
-//    uniquenName,movieId,episode,fileName,fileURL,targetPath,tempPath,filesize,filerecievesize ,basepath,basepath,time,isHadDown,iconUrl,title
     NSMutableArray * array = [NSMutableArray array];
     while (rs.next) {
         FileModel *file = [[FileModel alloc]init];
@@ -102,19 +102,9 @@ static FMDatabase *_db;
         file.fileURL = [rs stringForColumn:@"fileURL"];
         file.fileSize = [rs stringForColumn:@"filesize"];
         file.fileReceivedSize = [rs stringForColumn:@"filerecievesize"];
-        NSString*  path1= [CommonHelper getTargetPathWithBasepath:@"Downloads" subpath:@"Video"];
-        path1 = [path1 stringByAppendingPathComponent:file.fileName];
-        file.targetPath = path1;
-        NSString*  path2= [CommonHelper getTempFolderPathWithBasepath:@"Downloads"];
-        NSString *tempfilePath= [path2 stringByAppendingPathComponent: file.fileName];
-        file.tempPath = tempfilePath;
-        file.time = [rs stringForColumn:@"time"];
         file.iconUrl = [rs stringForColumn:@"iconUrl"];
         file.isHadDown  = [rs boolForColumn:@"isHadDown"];
-        file.uniquenName = [rs stringForColumn:@"uniquenName"];
         file.title = [rs stringForColumn:@"title"];
-        file.movieId = [rs stringForColumn:@"movieId"];
-        file.episode = [rs intForColumn:@"episode"];
         file.urlType = [rs intForColumn:@"urlType"];
         
         file.isDownloading=NO;
@@ -122,10 +112,7 @@ static FMDatabase *_db;
         file.willDownloading = NO;
         // file.isFirstReceived = YES;
         file.error = NO;
-        
-        NSData *fileData=[[NSFileManager defaultManager ] contentsAtPath:file.tempPath];
-        NSInteger receivedDataLength=[fileData length];//获取已经下载的部分文件的大小
-        file.fileReceivedSize=[NSString stringWithFormat:@"%ld",(long)receivedDataLength];        
+
         [array addObject:file];
     }
     [rs close];
@@ -153,7 +140,7 @@ static FMDatabase *_db;
  */
 +(BOOL)updateFileModeTotalSize:(FileModel *)model
 {
-    if (model.uniquenName == nil || model.uniquenName.length == 0) {
+    if (model.fileName == nil || model.fileName.length == 0) {
         NSLog(@"MovieId为空，跟新下载完毕列表失败");
         return NO;
     }
@@ -165,7 +152,7 @@ static FMDatabase *_db;
     }
     [_db setShouldCacheStatements:YES];
  
-    int count = [_db intForQuery:@"SELECT COUNT(1) FROM fileModel where isHadDown = ? and uniquenName = ?;",@(NO),model.uniquenName];
+    int count = [_db intForQuery:@"SELECT COUNT(1) FROM fileModel where isHadDown = ? and fileName = ?;",@(NO),model.fileName];
     if (count == 0) {
         NSLog(@"没有剧集记录，无法更新");
         return NO;
@@ -173,7 +160,7 @@ static FMDatabase *_db;
     
     BOOL result = false ;
     if (model.fileSize != nil || model.fileSize.length != 0 || [model.fileSize longLongValue] != 0) {
-        result = [_db executeUpdate:@"update fileModel set filesize =? where uniquenName = ?;",model.fileSize,model.uniquenName];
+        result = [_db executeUpdate:@"update fileModel set filesize =? where fileName = ?;",model.fileSize,model.fileName];
     }
     [_db close];
     if (!result) {
@@ -192,8 +179,8 @@ static FMDatabase *_db;
  */
 +(BOOL)updateFileModeWhenDownFinish:(FileModel *)model
 {
-    if (model.uniquenName == nil || model.uniquenName.length == 0) {
-//        [IanAlert alertError:@"MovieId为空，跟新下载完毕列表失败"];
+    if (model.fileName == nil || model.fileName.length == 0) {
+        NSLog(@"fileName为空，跟新下载完毕列表失败");
         return NO;
     }
     
@@ -203,47 +190,32 @@ static FMDatabase *_db;
         return NO;
     }
     [_db setShouldCacheStatements:YES];
-    /**
-     NSDictionary *filedic = [NSDictionary dictionaryWithObjectsAndKeys:fileinfo.fileName,@"filename",fileinfo.time,@"time",fileinfo.fileSize,@"filesize",fileinfo.targetPath,@"filepath",imagedata,@"fileimage", nil];
-     */
-    int count = [_db intForQuery:@"SELECT COUNT(1) FROM fileModel where isHadDown = ? and uniquenName = ?;",@(NO),model.uniquenName];
+    int count = [_db intForQuery:@"SELECT COUNT(1) FROM fileModel where isHadDown = ? and fileName = ?;",@(NO),model.fileName];
     if (count == 0) {
         NSLog(@"没有剧集记录，无法更新");
         return NO;
     }
- 
     BOOL result = false ;
-//    if (model.fileName != nil || model.fileName.length != 0) {
-//        result = [_db executeUpdate:@"update fileModel set title =?  where uniquenName = ?;",model.title,model.uniquenName];
-//    }
-    
     if (model.fileSize != nil || model.fileSize.length != 0 || [model.fileSize longLongValue] != 0) {
-        result = [_db executeUpdate:@"update fileModel set filesize =? ,isHadDown=? where uniquenName = ?;",model.fileSize,@(YES),model.uniquenName];
+        result = [_db executeUpdate:@"update fileModel set filesize =? ,isHadDown=? where fileName = ?;",model.fileSize,@(YES),model.fileName];
     }
-//    if (model.iconUrl != nil || model.iconUrl.length != 0) {
-//        result = [_db executeUpdate:@"update fileModel set iconUrl = ? where uniquenName = ?;",model.iconUrl,model.uniquenName];
-//    }
-//    if (model.fileURL != nil || model.fileURL.length != 0) {
-//        result = [_db executeUpdate:@"update fileModel set fileURL = ? where uniquenName = ?;",model.fileURL,model.uniquenName];
-//    }
     [_db close];
     if (!result) {
         NSLog(@"---更改数据库信息失败---");
     }
-    
     return result;
 }
 
 /**
  *  这个剧是否在下载列表
  *
- *  @param uniquenName uniquenName ： MovieId+epsiode
+ *  @param fileName fileName ： MovieId+epsiode
  *
  *  @return YES：存在 ； NO：不存在
  */
-+(BOOL)isFileModelInDB:(NSString *)uniquenName
++(BOOL)isFileModelInDB:(NSString *)fileName
 {
-    if (uniquenName == nil || uniquenName.length == 0) {
+    if (fileName == nil || fileName.length == 0) {
         NSLog(@"剧集id为空，跟新下载完毕列表失败");
         return NO;
     }
@@ -253,7 +225,7 @@ static FMDatabase *_db;
         return nil;
     }
     [_db setShouldCacheStatements:YES];
-    int count = [_db intForQuery:@"SELECT COUNT(uniquenName) FROM fileModel where uniquenName = ?;",uniquenName];
+    int count = [_db intForQuery:@"SELECT COUNT(fileName) FROM fileModel where fileName = ?;",fileName];
     [_db close];
     if (count == 0) {
         return NO;
@@ -335,17 +307,8 @@ static FMDatabase *_db;
         file.fileURL = [rs stringForColumn:@"fileURL"];
         file.fileSize = [rs stringForColumn:@"filesize"];
         file.fileReceivedSize = [rs stringForColumn:@"filerecievesize"];
-        NSString*  path1= [CommonHelper getTargetPathWithBasepath:kDownDomanPath subpath:@"Video"];
-        path1 = [path1 stringByAppendingPathComponent:file.fileName];
-        file.targetPath = path1;
-        NSString*  path2= [CommonHelper getTempFolderPathWithBasepath:kDownDomanPath];
-        NSString *tempfilePath= [path2 stringByAppendingPathComponent: file.fileName];
-        file.tempPath = tempfilePath;
         file.iconUrl = [rs stringForColumn:@"iconUrl"];
-        file.uniquenName = [rs stringForColumn:@"uniquenName"];
         file.title = [rs stringForColumn:@"title"];
-        file.movieId = [rs stringForColumn:@"movieId"];
-        file.episode = [rs intForColumn:@"episode"];
         file.urlType = [rs intForColumn:@"urlType"];
         [array addObject:file];
     }
@@ -357,7 +320,7 @@ static FMDatabase *_db;
 /**
  *  是否这部剧已经下载完毕
  *
- *  @param uniquenName 剧集Id
+ *  @param fileName 剧集Id
  *
  *  @return YES:下载完毕 ； NO：没有下载完毕
  */
@@ -383,13 +346,13 @@ static FMDatabase *_db;
 }
 
 /**
- *  根据uniquenName删除已经下载的剧 -- 只会删除一个
+ *  根据fileName删除已经下载的剧 -- 只会删除一个
  *
- *  @param uniquenName MovieId+eposide
+ *  @param fileName MovieId+eposide
  *
  *  @return YES:成功；NO：失败
  */
-+(BOOL)delFileModelWithUniquenName:(NSString *)uniquenName
++(BOOL)delFileModelWithfileName:(NSString *)fileName
 {
     if (![_db open]) {
         [_db close];
@@ -397,7 +360,7 @@ static FMDatabase *_db;
         return NO;
     }
     [_db setShouldCacheStatements:YES];
-    BOOL result = [_db executeUpdate:@"DELETE FROM fileModel where uniquenName = ?",uniquenName];
+    BOOL result = [_db executeUpdate:@"DELETE FROM fileModel where fileName = ?",fileName];
     [_db close];
     return result;
 }
@@ -425,7 +388,7 @@ static FMDatabase *_db;
 /**
  *  是否这部剧已经下载完毕
  *
- *  @param uniquenName 剧集Id
+ *  @param fileName 剧集Id
  *
  *  @return YES:下载完毕 ； NO：没有下载完毕
  */
@@ -442,7 +405,7 @@ static FMDatabase *_db;
         return @{@"isHad" : @(NO) , @"urlType" : @(0)};
     }
     
-    int count = [_db intForQuery:@"SELECT COUNT(uniquenName) FROM fileModel where movieId = ? and isHadDown = ? and episode = ?;",movieID,@(YES),@(episode)];
+    int count = [_db intForQuery:@"SELECT COUNT(fileName) FROM fileModel where movieId = ? and isHadDown = ? and episode = ?;",movieID,@(YES),@(episode)];
     if (count == 0) {
         [_db close];
         return @{@"isHad" : @(NO) , @"urlType" : @(0)};

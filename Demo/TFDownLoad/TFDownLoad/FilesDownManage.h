@@ -11,12 +11,11 @@
 #import "CommonHelper.h"
 #import "DownloadDelegate.h"
 #import "FileModel.h"
-#import "DownLoadModel.h"
+//#import "DownLoadModel.h"
 #import <AVFoundation/AVAudioPlayer.h>
 #import "ContentModel.h"
 
 @interface FilesDownManage : NSObject<ASIHTTPRequestDelegate,ASIProgressDelegate>
-
 @property(nonatomic,weak)id<DownloadDelegate> VCdelegate;//获得下载事件的vc，用在比如多选图片后批量下载的情况，这时需配合 allowNextRequest 协议方法使用
 @property(nonatomic,weak)id<DownloadDelegate> downloadDelegate;//下载列表delegate
 
@@ -33,12 +32,20 @@
 -(void)saveFinishedFile;
 -(void)deleteFinishFile:(FileModel *)selectFile;
 
+-(void)loadTempfiles;//将本地的未下载完成的临时文件加载到正在下载列表里,但是不接着开始下载
+-(void)loadFinishedfiles;//将本地已经下载完成的文件加载到已下载列表里
+
++(FilesDownManage *) sharedFilesDownManage;
+//＊＊＊第一次＊＊＊初始化是使用，设置缓存文件夹和已下载文件夹，构建下载列表和已下载文件列表时使用
++(FilesDownManage *) sharedFilesDownManageWithBasepath:(NSString *)basepath TargetPathArr:(NSArray *)targetpaths;
+
+
+
 /**
  *  加入下载列表--进行下载
  *
  *  @param downLoadModel 传入模型进行下载
  */
-//-(void)downFileUrl:(DownLoadModel *)downLoadModel;
 -(void)downFileUrl:(ContentModel *)downLoadModel;
 
 /**
@@ -49,33 +56,9 @@
  *  @param title     列表展示用的名字（展示下载及已完成列表用）
  *  @param iconUrl     图片名字
  */
--(void)downFileUrl:(NSString *)downUrl uniquenName:(NSString *)uniquenName title:(NSString *)title iconUrl:(NSString *)iconUrl;
+-(void)downFileUrl:(NSString *)downUrl fileName:(NSString *)fileName title:(NSString *)title iconUrl:(NSString *)iconUrl;
 
 
--(void)loadTempfiles;//将本地的未下载完成的临时文件加载到正在下载列表里,但是不接着开始下载
--(void)loadFinishedfiles;//将本地已经下载完成的文件加载到已下载列表里
--(void)playButtonSound;//播放按钮按下时的声音
--(void)playDownloadSound;//播放下载完成时的声音
-
-
-+(FilesDownManage *) sharedFilesDownManage;
-//＊＊＊第一次＊＊＊初始化是使用，设置缓存文件夹和已下载文件夹，构建下载列表和已下载文件列表时使用
-+(FilesDownManage *) sharedFilesDownManageWithBasepath:(NSString *)basepath TargetPathArr:(NSArray *)targetpaths;
-
-
-//1.点击百度或者土豆的下载，进行一次新的队列请求
-//2.是否接着开始下载
--(void)beginRequest:(FileModel *)fileInfo isBeginDown:(BOOL)isBeginDown ;
--(void)startLoad;
--(void)restartAllRquests;
 
 @end
-
-
-
-//-(void)downFileUrl:(NSString*)url
-//          filename:(NSString*)name
-//        filetarget:(NSString *)path
-//         fileimage:(UIImage *)image
-//;
-
+ 
