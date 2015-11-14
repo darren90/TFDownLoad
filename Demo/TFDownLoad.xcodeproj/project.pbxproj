@@ -36,6 +36,8 @@
 		8935C15C1BF103B600C4E220 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C1551BF103B600C4E220 /* FMDatabaseQueue.m */; };
 		8935C15D1BF103B600C4E220 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C1581BF103B600C4E220 /* FMResultSet.m */; };
 		8935C1611BF103D600C4E220 /* DatabaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C1601BF103D600C4E220 /* DatabaseTool.m */; };
+		8952CF651BF6E196009BE601 /* DownloadedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952CF631BF6E196009BE601 /* DownloadedCell.m */; };
+		8952CF661BF6E196009BE601 /* DownloadedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8952CF641BF6E196009BE601 /* DownloadedCell.xib */; };
 		89FF89791BF3635B0026B532 /* DownLoadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89781BF3635B0026B532 /* DownLoadModel.m */; };
 		89FF897C1BF36BC30026B532 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FF897B1BF36BC30026B532 /* libsqlite3.tbd */; };
 		89FF898B1BF39A050026B532 /* DownManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89861BF39A050026B532 /* DownManagerViewController.m */; };
@@ -125,6 +127,9 @@
 		8935C1581BF103B600C4E220 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		8935C15F1BF103D600C4E220 /* DatabaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseTool.h; sourceTree = "<group>"; };
 		8935C1601BF103D600C4E220 /* DatabaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseTool.m; sourceTree = "<group>"; };
+		8952CF621BF6E196009BE601 /* DownloadedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadedCell.h; sourceTree = "<group>"; };
+		8952CF631BF6E196009BE601 /* DownloadedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedCell.m; sourceTree = "<group>"; };
+		8952CF641BF6E196009BE601 /* DownloadedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadedCell.xib; sourceTree = "<group>"; };
 		89FF89771BF3635B0026B532 /* DownLoadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadModel.h; sourceTree = "<group>"; };
 		89FF89781BF3635B0026B532 /* DownLoadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadModel.m; sourceTree = "<group>"; };
 		89FF897A1BF363910026B532 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -356,6 +361,9 @@
 			children = (
 				89FF898D1BF39A2E0026B532 /* FilesCell.h */,
 				89FF898E1BF39A2E0026B532 /* FilesCell.m */,
+				8952CF621BF6E196009BE601 /* DownloadedCell.h */,
+				8952CF631BF6E196009BE601 /* DownloadedCell.m */,
+				8952CF641BF6E196009BE601 /* DownloadedCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -463,6 +471,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8952CF661BF6E196009BE601 /* DownloadedCell.xib in Resources */,
 				8935C0D11BF0FFC800C4E220 /* LaunchScreen.storyboard in Resources */,
 				8935C0CE1BF0FFC800C4E220 /* Assets.xcassets in Resources */,
 				8935C0CC1BF0FFC800C4E220 /* Main.storyboard in Resources */,
@@ -517,6 +526,7 @@
 				8935C15C1BF103B600C4E220 /* FMDatabaseQueue.m in Sources */,
 				8935C15B1BF103B600C4E220 /* FMDatabasePool.m in Sources */,
 				8935C1131BF1005900C4E220 /* ASIDownloadCache.m in Sources */,
+				8952CF651BF6E196009BE601 /* DownloadedCell.m in Sources */,
 				8935C1191BF1005900C4E220 /* NSHTTPCookieAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -132,12 +132,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bky-hP-Wf7">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="downingState" rowHeight="60" id="bky-hP-Wf7">
+                                <rect key="frame" x="0.0" y="92" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bky-hP-Wf7" id="uag-PX-mH9">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfe-yt-OLl">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="downing" translatesAutoresizingMaskIntoConstraints="NO" id="ZMk-1f-8YM">
+                                                    <rect key="frame" x="17" y="-5" width="69" height="51.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="下载中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIv-dJ-tlQ">
+                                                    <rect key="frame" x="124" y="19" width="109" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="hfe-yt-OLl" secondAttribute="bottom" id="2m2-6B-XfH"/>
+                                        <constraint firstItem="hfe-yt-OLl" firstAttribute="top" secondItem="uag-PX-mH9" secondAttribute="top" id="2wu-Dr-Ned"/>
+                                        <constraint firstAttribute="trailing" secondItem="hfe-yt-OLl" secondAttribute="trailing" id="fYl-Eo-lUf"/>
+                                        <constraint firstItem="hfe-yt-OLl" firstAttribute="leading" secondItem="uag-PX-mH9" secondAttribute="leading" id="yxD-FV-3WM"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -218,5 +241,6 @@
     </scenes>
     <resources>
         <image name="btn_downlaod_n" width="25" height="25"/>
+        <image name="downing" width="24" height="24"/>
     </resources>
 </document>

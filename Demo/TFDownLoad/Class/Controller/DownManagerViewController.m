@@ -7,9 +7,10 @@
 //
 
 #import "DownManagerViewController.h"
+#import "DownloadedCell.h"
 
 @interface DownManagerViewController ()
-
+@property (nonatomic,strong)NSMutableArray *dataArray;
 @end
 
 @implementation DownManagerViewController
@@ -17,39 +18,62 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.dataArray removeAllObjects];
+    NSArray *array = [DatabaseTool getFileModelsHadDownLoad];
+    [self.dataArray addObjectsFromArray:array];
+    [self.tableView reloadData];
 }
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return self.dataArray.count+1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    if (section == 0) {
+        return 1;
+    }
+    return self.dataArray.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+    if (indexPath.section == 0) {//downingState
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"downingState"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    }else{
+        DownloadedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Downloaded"];
+        if(cell == nil){
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"DownloadedCell" owner:nil options:nil]lastObject];
+        }
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.model = self.dataArray[indexPath.row];
+        return cell;
+    }
 }
-*/
+
+
+
+
+-(NSMutableArray *)dataArray
+{
+    if (!_dataArray ) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
+
 
 /*
 // Override to support conditional editing of the table view.

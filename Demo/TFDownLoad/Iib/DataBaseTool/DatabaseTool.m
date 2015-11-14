@@ -14,6 +14,7 @@
 #import "DownLoadModel.h"
 #import "FileModel.h"
 #import "CommonHelper.h"
+#import "ContentModel.h"
 
 static FMDatabase *_db;
 //order by id desc:降序 asc：升序
@@ -248,15 +249,15 @@ static FMDatabase *_db;
     }
     
     [_db setShouldCacheStatements:YES];
-    FMResultSet *rs = [_db executeQuery:@"SELECT DISTINCT title,movieId,iconUrl from fileModel where isHadDown = ? order by id desc;",@(YES)];
+    FMResultSet *rs = [_db executeQuery:@"SELECT DISTINCT title,fileName,iconUrl from fileModel where isHadDown = ? order by id desc;",@(YES)];
     NSMutableArray * array = [NSMutableArray array];
     while (rs.next) {
-//        DownedSeriesModel *model = [[DownedSeriesModel alloc]init];
-//        model.title = [rs stringForColumn:@"title"] ;
-//        model.movieId = [rs stringForColumn:@"movieId"];
-//        model.iconUrl = [rs stringForColumn:@"iconUrl"];
-//        model.seriesCount = [self getFileModelCountWithMovieId:model.movieId];
-//        [array addObject:model];
+//fileName TEXT,title TEXT,fileURL TEXT,iconUrl TEXT,filesize TEXT,filerecievesize TEXT,isHadDown integer,urlType integer)
+        ContentModel *model = [[ContentModel alloc]init];
+        model.title = [rs stringForColumn:@"title"] ;
+        model.uniquenName = [rs stringForColumn:@"fileName"];
+        model.iconUrl = [rs stringForColumn:@"iconUrl"];
+        [array addObject:model];
     }
     [rs close];
     [_db close];
