@@ -9,6 +9,7 @@
 #import "FilesCell.h"
 #import "ContentModel.h"
 #import "FilesDownManage.h"
+#import "DatabaseTool.h"
 
 @interface FilesCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
@@ -40,6 +41,15 @@
  *  @param sender 按钮
  */
 - (IBAction)DownBtnClick:(UIButton *)sender {
+    BOOL resutl = [DatabaseTool isThisHadLoaded:self.model.uniquenName];
+    
+    if (resutl) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"警告" message:@"本文件已经下载" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+        
+        return;
+    }
+    
     NSLog(@"---downUrl:%@",self.model.downUrl);
     self.DownBtn.hidden = YES;
     NSLog(@"-加入下载列表成功r-----");

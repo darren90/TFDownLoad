@@ -63,7 +63,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="神盾局第三季第1集" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYm-Q1-psP">
                                                     <rect key="frame" x="71" y="0.0" width="189" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -100,7 +100,7 @@
                             <outlet property="delegate" destination="iRm-fb-qu7" id="5II-QZ-TKU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="nEa-Dm-AA5"/>
+                    <navigationItem key="navigationItem" title="文件列表" id="nEa-Dm-AA5"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xui-V3-1ai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -123,7 +123,7 @@
             </objects>
             <point key="canvasLocation" x="-738" y="214"/>
         </scene>
-        <!--Root View Controller-->
+        <!--下载列表-->
         <scene sceneID="aGW-Nw-31O">
             <objects>
                 <tableViewController id="44d-w8-c2A" customClass="DownManagerViewController" sceneMemberID="viewController">
@@ -142,17 +142,29 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfe-yt-OLl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="downing" translatesAutoresizingMaskIntoConstraints="NO" id="ZMk-1f-8YM">
-                                                    <rect key="frame" x="17" y="-5" width="69" height="51.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downing" translatesAutoresizingMaskIntoConstraints="NO" id="ZMk-1f-8YM">
+                                                    <rect key="frame" x="17" y="4" width="69" height="51.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="69" id="wfY-3r-Fnn"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="下载中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIv-dJ-tlQ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下载中......" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIv-dJ-tlQ">
                                                     <rect key="frame" x="124" y="19" width="109" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="ZMk-1f-8YM" firstAttribute="leading" secondItem="hfe-yt-OLl" secondAttribute="leading" constant="17" id="5y8-Me-WNd"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZMk-1f-8YM" secondAttribute="bottom" constant="4" id="7rB-Z0-vEe"/>
+                                                <constraint firstAttribute="bottom" secondItem="EIv-dJ-tlQ" secondAttribute="bottom" constant="19.5" id="IGN-e5-BC1"/>
+                                                <constraint firstAttribute="trailing" secondItem="EIv-dJ-tlQ" secondAttribute="trailing" constant="87" id="Nqj-2h-g1W"/>
+                                                <constraint firstItem="EIv-dJ-tlQ" firstAttribute="leading" secondItem="ZMk-1f-8YM" secondAttribute="trailing" constant="38" id="c3n-qT-VNV"/>
+                                                <constraint firstItem="ZMk-1f-8YM" firstAttribute="top" secondItem="hfe-yt-OLl" secondAttribute="top" constant="4" id="p1r-ON-KjO"/>
+                                                <constraint firstItem="EIv-dJ-tlQ" firstAttribute="top" secondItem="hfe-yt-OLl" secondAttribute="top" constant="19" id="wcr-pS-Rc5"/>
+                                            </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -169,7 +181,9 @@
                             <outlet property="delegate" destination="44d-w8-c2A" id="HF5-0w-pf1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="kxs-Ed-cUG"/>
+                    <navigationItem key="navigationItem" title="下载列表" id="kxs-Ed-cUG">
+                        <barButtonItem key="backBarButtonItem" title="返回" id="yHc-Hf-grf"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="We6-Sg-9sH" kind="push" identifier="downingVc" id="l5u-dl-s4M"/>
                     </connections>
@@ -178,7 +192,7 @@
             </objects>
             <point key="canvasLocation" x="-236" y="1070"/>
         </scene>
-        <!--Downing Controller-->
+        <!--下载中-->
         <scene sceneID="vtn-Im-i9F">
             <objects>
                 <tableViewController storyboardIdentifier="downingVc" id="We6-Sg-9sH" customClass="DowningController" sceneMemberID="viewController">
@@ -201,7 +215,7 @@
                             <outlet property="delegate" destination="We6-Sg-9sH" id="QGZ-BP-YQa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="cI0-6s-MXt"/>
+                    <navigationItem key="navigationItem" title="下载中" id="cI0-6s-MXt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c99-AS-rOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

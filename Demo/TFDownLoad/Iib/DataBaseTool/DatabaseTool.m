@@ -11,7 +11,6 @@
 #import "FMDatabaseAdditions.h"
 
 //下载
-#import "DownLoadModel.h"
 #import "FileModel.h"
 #import "CommonHelper.h"
 #import "ContentModel.h"
@@ -142,7 +141,7 @@ static FMDatabase *_db;
 +(BOOL)updateFileModeTotalSize:(FileModel *)model
 {
     if (model.fileName == nil || model.fileName.length == 0) {
-        NSLog(@"MovieId为空，跟新下载完毕列表失败");
+        NSLog(@"fileName为空，跟新下载完毕列表失败");
         return NO;
     }
     
@@ -210,7 +209,7 @@ static FMDatabase *_db;
 /**
  *  这个剧是否在下载列表
  *
- *  @param fileName fileName ： MovieId+epsiode
+ *  @param fileName fileName 
  *
  *  @return YES：存在 ； NO：不存在
  */
@@ -264,60 +263,8 @@ static FMDatabase *_db;
     return array;
 }
 
-/**
- *  找出某一部剧一共下载了几部
- *
- *  @param MovieId 剧集id
- *
- *  @return 下载次数
- */
-+(int)getFileModelCountWithMovieId:(NSString *)MovieId
-{
-    if (![_db open]) {
-        [_db close];   NSLog(@"数据库打开失败");  return 0; }
-    
-    [_db setShouldCacheStatements:YES];
-    
-    int count = [_db intForQuery:@"SELECT COUNT(movieId) FROM fileModel where isHadDown = 1 and movieId = ?;",MovieId];
-    return (int)count;
-}
 
-
-/**
- *  根据剧集id，找到已经下载的那些剧
- *
- *  @param movieId 剧集id
- *
- *  @return 装有FileModel的数组
- */
-+(NSArray *)getDownLoadFileModelWithMovidId:(NSString *)movieId
-{
-    if (![_db open]) {
-        [_db close];
-        NSLog(@"数据库打开失败");
-        return nil;
-    }
-    
-    [_db setShouldCacheStatements:YES];
-    FMResultSet *rs = [_db executeQuery:@"SELECT * FROM fileModel where movieId = ? and isHadDown = 1  order by episode asc;",movieId];
-    
-    NSMutableArray * array = [NSMutableArray array];
-    while (rs.next) {
-        FileModel *file = [[FileModel alloc]init];
-        file.fileName = [rs stringForColumn:@"fileName"];
-        file.fileURL = [rs stringForColumn:@"fileURL"];
-        file.fileSize = [rs stringForColumn:@"filesize"];
-        file.fileReceivedSize = [rs stringForColumn:@"filerecievesize"];
-        file.iconUrl = [rs stringForColumn:@"iconUrl"];
-        file.title = [rs stringForColumn:@"title"];
-        file.urlType = [rs intForColumn:@"urlType"];
-        [array addObject:file];
-    }
-    [rs close];
-    [_db close];
-    return array;
-}
-
+ 
 /**
  *  是否这部剧已经下载完毕
  *
@@ -325,9 +272,9 @@ static FMDatabase *_db;
  *
  *  @return YES:下载完毕 ； NO：没有下载完毕
  */
-+(BOOL)isThisHadLoaded:(NSString *)movieID episode:(int)episode
++(BOOL)isThisHadLoaded:(NSString *)fileName
 {
-    if (movieID ==  nil || movieID.length == 0) {
+    if (fileName ==  nil || fileName.length == 0) {
         return NO;
     }
     if (![_db open]) {
@@ -336,7 +283,7 @@ static FMDatabase *_db;
         return NO;
     }
     
-    NSUInteger count = [_db intForQuery:@"SELECT COUNT(1) FROM fileModel where movieId = ? and episode = ?;",movieID,@(episode)];
+    NSUInteger count = [_db intForQuery:@"SELECT COUNT(1) FROM fileModel where fileName = ? ;",fileName];
     [_db close];
     
     if (count  == 0) {
@@ -349,7 +296,7 @@ static FMDatabase *_db;
 /**
  *  根据fileName删除已经下载的剧 -- 只会删除一个
  *
- *  @param fileName MovieId+eposide
+ *  @param fileName
  *
  *  @return YES:成功；NO：失败
  */
@@ -366,60 +313,6 @@ static FMDatabase *_db;
     return result;
 }
  
-/**
- *  根据MovieId删除已经下载的剧 -- 会删除多个
- *
- *  @param movieId 剧集Id
- *
- *  @return YES:成功；NO：失败
- */
-+(BOOL)delFileModelsWithMovieId:(NSString *)movieId
-{
-    if (![_db open]) {
-        [_db close];
-        NSLog(@"数据库打开失败！");
-        return NO;
-    }
-    [_db setShouldCacheStatements:YES];
-    BOOL result = [_db executeUpdate:@"DELETE FROM fileModel where movieId = ? and isHadDown = ?",movieId ,@(YES)];
-    [_db close];
-    return result;
-}
-
-/**
- *  是否这部剧已经下载完毕
- *
- *  @param fileName 剧集Id
- *
- *  @return YES:下载完毕 ； NO：没有下载完毕
- */
-+(NSDictionary *)isHadDowned:(NSString *)movieID episode:(int)episode
-{
-    int urlType = 0;
-    
-    if (movieID ==  nil || movieID.length == 0) {
-        return @{@"isHad" : @(NO) , @"urlType" : @(0)};
-    }
-    if (![_db open]) {
-        [_db close];
-        NSLog(@"数据库打开失败");
-        return @{@"isHad" : @(NO) , @"urlType" : @(0)};
-    }
-    
-    int count = [_db intForQuery:@"SELECT COUNT(fileName) FROM fileModel where movieId = ? and isHadDown = ? and episode = ?;",movieID,@(YES),@(episode)];
-    if (count == 0) {
-        [_db close];
-        return @{@"isHad" : @(NO) , @"urlType" : @(0)};
-    }else{
-        FMResultSet *rs = [_db executeQuery:@"select urlType from fileModel where movieId = ? and episode = ? order by id desc",movieID,@(episode)];
-        while (rs.next) {
-            urlType  = [rs intForColumn:@"urlType"];
-        }
-        [_db close];
-        return @{@"isHad" : @(YES) , @"urlType" : @(urlType)};
-    }
-}
-
 /*******************************5 -- 新 - 下载****************************************/
 
 

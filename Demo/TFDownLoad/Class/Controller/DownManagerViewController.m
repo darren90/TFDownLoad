@@ -59,6 +59,7 @@
         if(cell == nil){
             cell = [[[NSBundle mainBundle]loadNibNamed:@"DownloadedCell" owner:nil options:nil]lastObject];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.dataArray[indexPath.row];
         return cell;
     }

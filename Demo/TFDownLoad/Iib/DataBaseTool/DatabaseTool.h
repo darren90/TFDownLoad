@@ -54,7 +54,7 @@
 /**
  *  这个剧是否在下载列表
  *
- *  @param uniquenName uniquenName ： MovieId+epsiode
+ *  @param uniquenName uniquenName
  *
  *  @return YES：存在 ； NO：不存在
  */
@@ -66,16 +66,7 @@
  *  @return 下载完毕的剧集Array
  */
 +(NSArray *)getFileModelsHadDownLoad;
-
-/**
- *  根据剧集id，找到已经下载的那些剧
- *
- *  @param movieId 剧集id
- *
- *  @return 装有FileModel的数组
- */
-+(NSArray *)getDownLoadFileModelWithMovidId:(NSString *)movieId;
-
+ 
 /**
  *  是否这部剧已经下载完毕
  *
@@ -83,36 +74,19 @@
  *
  *  @return YES:下载完毕 ； NO：没有下载完毕
  */
-+(BOOL)isThisHadLoaded:(NSString *)movieID episode:(int)episode;
++(BOOL)isThisHadLoaded:(NSString *)fileName;
 
 
 /**
  *  根据uniquenName删除已经下载的剧
  *
- *  @param uniquenName MovieId+eposide
+ *  @param uniquenName  
  *
  *  @return YES:成功；NO：失败
  */
 +(BOOL)delFileModelWithUniquenName:(NSString *)uniquenName;
-
-/**
- *  根据MovieId删除已经下载的剧 -- 会删除多个
- *
- *  @param movieId 剧集Id
- *
- *  @return YES:成功；NO：失败
- */
-+(BOOL)delFileModelsWithMovieId:(NSString *)movieId;
-
-/**
- *  是否这部剧已经下载完毕
- *
- *  @param uniquenName 剧集Id
- *
- *  @return YES:下载完毕 ； NO：没有下载完毕
- */
-+(NSDictionary *)isHadDowned:(NSString *)movieID episode:(int)episode;
-
+ 
+ 
 /*******************************5 -- 新 - 下载2.0****************************************/
 
 @end

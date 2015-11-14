@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8935C0C31BF0FFC800C4E220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C0C21BF0FFC800C4E220 /* main.m */; };
 		8935C0C61BF0FFC800C4E220 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C0C51BF0FFC800C4E220 /* AppDelegate.m */; };
-		8935C0C91BF0FFC800C4E220 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C0C81BF0FFC800C4E220 /* ViewController.m */; };
 		8935C0CC1BF0FFC800C4E220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8935C0CA1BF0FFC800C4E220 /* Main.storyboard */; };
 		8935C0CE1BF0FFC800C4E220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8935C0CD1BF0FFC800C4E220 /* Assets.xcassets */; };
 		8935C0D11BF0FFC800C4E220 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8935C0CF1BF0FFC800C4E220 /* LaunchScreen.storyboard */; };
@@ -44,7 +43,6 @@
 		8952CF751BF72FD0009BE601 /* WdCleanCaches.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952CF731BF72FD0009BE601 /* WdCleanCaches.m */; };
 		8959A81C1BF739D7003071DD /* NSString+TF.m in Sources */ = {isa = PBXBuildFile; fileRef = 8959A81B1BF739D7003071DD /* NSString+TF.m */; };
 		8959A81E1BF73C95003071DD /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 8959A81D1BF73C95003071DD /* README.md */; };
-		89FF89791BF3635B0026B532 /* DownLoadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89781BF3635B0026B532 /* DownLoadModel.m */; };
 		89FF897C1BF36BC30026B532 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FF897B1BF36BC30026B532 /* libsqlite3.tbd */; };
 		89FF898B1BF39A050026B532 /* DownManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89861BF39A050026B532 /* DownManagerViewController.m */; };
 		89FF898C1BF39A050026B532 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89881BF39A050026B532 /* FilesViewController.m */; };
@@ -74,8 +72,6 @@
 		8935C0C21BF0FFC800C4E220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8935C0C41BF0FFC800C4E220 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8935C0C51BF0FFC800C4E220 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8935C0C71BF0FFC800C4E220 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8935C0C81BF0FFC800C4E220 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8935C0CB1BF0FFC800C4E220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8935C0CD1BF0FFC800C4E220 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8935C0D01BF0FFC800C4E220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -146,8 +142,6 @@
 		8959A81A1BF739D7003071DD /* NSString+TF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TF.h"; sourceTree = "<group>"; };
 		8959A81B1BF739D7003071DD /* NSString+TF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TF.m"; sourceTree = "<group>"; };
 		8959A81D1BF73C95003071DD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		89FF89771BF3635B0026B532 /* DownLoadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadModel.h; sourceTree = "<group>"; };
-		89FF89781BF3635B0026B532 /* DownLoadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadModel.m; sourceTree = "<group>"; };
 		89FF897A1BF363910026B532 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		89FF897B1BF36BC30026B532 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		89FF89851BF39A050026B532 /* DownManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownManagerViewController.h; sourceTree = "<group>"; };
@@ -216,10 +210,6 @@
 				89FF89831BF39A050026B532 /* Class */,
 				8935C0C41BF0FFC800C4E220 /* AppDelegate.h */,
 				8935C0C51BF0FFC800C4E220 /* AppDelegate.m */,
-				8935C0C71BF0FFC800C4E220 /* ViewController.h */,
-				8935C0C81BF0FFC800C4E220 /* ViewController.m */,
-				89FF89771BF3635B0026B532 /* DownLoadModel.h */,
-				89FF89781BF3635B0026B532 /* DownLoadModel.m */,
 				8935C0CA1BF0FFC800C4E220 /* Main.storyboard */,
 				8935C0CD1BF0FFC800C4E220 /* Assets.xcassets */,
 				8935C0CF1BF0FFC800C4E220 /* LaunchScreen.storyboard */,
@@ -535,7 +525,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8935C1111BF1005900C4E220 /* ASIDataCompressor.m in Sources */,
-				8935C0C91BF0FFC800C4E220 /* ViewController.m in Sources */,
 				8935C1151BF1005900C4E220 /* ASIHTTPRequest.m in Sources */,
 				8935C1591BF103B600C4E220 /* FMDatabase.m in Sources */,
 				8935C1101BF1005900C4E220 /* ASIAuthenticationDialog.m in Sources */,
@@ -559,7 +548,6 @@
 				8935C15A1BF103B600C4E220 /* FMDatabaseAdditions.m in Sources */,
 				8935C1611BF103D600C4E220 /* DatabaseTool.m in Sources */,
 				8935C1121BF1005900C4E220 /* ASIDataDecompressor.m in Sources */,
-				89FF89791BF3635B0026B532 /* DownLoadModel.m in Sources */,
 				8935C15C1BF103B600C4E220 /* FMDatabaseQueue.m in Sources */,
 				8935C15B1BF103B600C4E220 /* FMDatabasePool.m in Sources */,
 				8959A81E1BF73C95003071DD /* README.md in Sources */,
