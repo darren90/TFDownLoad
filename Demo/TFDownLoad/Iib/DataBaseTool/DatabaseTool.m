@@ -22,7 +22,7 @@ static FMDatabase *_db;
 + (void)initialize
 {
     NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask , YES) firstObject];
-    NSString* sqlPath = [NSString stringWithFormat:@"%@/rrmj.sqlite",cachesPath];
+    NSString* sqlPath = [NSString stringWithFormat:@"%@/tfdownload.sqlite",cachesPath];
     NSLog(@"--sqlPath:%@",sqlPath);
     _db = [[FMDatabase alloc] initWithPath:sqlPath];
     
@@ -312,7 +312,26 @@ static FMDatabase *_db;
     [_db close];
     return result;
 }
- 
+
+/**
+ *  根据uniquenName删除已经下载的剧 -- 只会删除一个
+ *
+ *  @param uniquenName MovieId+eposide
+ *
+ *  @return YES:成功；NO：失败
+ */
++(BOOL)delFileModelWithUniquenName:(NSString *)uniquenName
+{
+    if (![_db open]) {
+        [_db close];
+        NSLog(@"数据库打开失败！");
+        return NO;
+    }
+    [_db setShouldCacheStatements:YES];
+    BOOL result = [_db executeUpdate:@"DELETE FROM fileModel where uniquenName = ?",uniquenName];
+    [_db close];
+    return result;
+}
 /*******************************5 -- 新 - 下载****************************************/
 
 
