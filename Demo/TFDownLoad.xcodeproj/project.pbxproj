@@ -38,6 +38,10 @@
 		8935C1611BF103D600C4E220 /* DatabaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8935C1601BF103D600C4E220 /* DatabaseTool.m */; };
 		8952CF651BF6E196009BE601 /* DownloadedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952CF631BF6E196009BE601 /* DownloadedCell.m */; };
 		8952CF661BF6E196009BE601 /* DownloadedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8952CF641BF6E196009BE601 /* DownloadedCell.xib */; };
+		8952CF691BF7282B009BE601 /* DowningController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952CF681BF7282B009BE601 /* DowningController.m */; };
+		8952CF6D1BF72DD6009BE601 /* DowningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952CF6B1BF72DD6009BE601 /* DowningCell.m */; };
+		8952CF6E1BF72DD6009BE601 /* DowningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8952CF6C1BF72DD6009BE601 /* DowningCell.xib */; };
+		8952CF751BF72FD0009BE601 /* WdCleanCaches.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952CF731BF72FD0009BE601 /* WdCleanCaches.m */; };
 		89FF89791BF3635B0026B532 /* DownLoadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89781BF3635B0026B532 /* DownLoadModel.m */; };
 		89FF897C1BF36BC30026B532 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FF897B1BF36BC30026B532 /* libsqlite3.tbd */; };
 		89FF898B1BF39A050026B532 /* DownManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89861BF39A050026B532 /* DownManagerViewController.m */; };
@@ -130,6 +134,13 @@
 		8952CF621BF6E196009BE601 /* DownloadedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadedCell.h; sourceTree = "<group>"; };
 		8952CF631BF6E196009BE601 /* DownloadedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedCell.m; sourceTree = "<group>"; };
 		8952CF641BF6E196009BE601 /* DownloadedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadedCell.xib; sourceTree = "<group>"; };
+		8952CF671BF7282B009BE601 /* DowningController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DowningController.h; sourceTree = "<group>"; };
+		8952CF681BF7282B009BE601 /* DowningController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DowningController.m; sourceTree = "<group>"; };
+		8952CF6A1BF72DD6009BE601 /* DowningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DowningCell.h; sourceTree = "<group>"; };
+		8952CF6B1BF72DD6009BE601 /* DowningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DowningCell.m; sourceTree = "<group>"; };
+		8952CF6C1BF72DD6009BE601 /* DowningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DowningCell.xib; sourceTree = "<group>"; };
+		8952CF721BF72FD0009BE601 /* WdCleanCaches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WdCleanCaches.h; sourceTree = "<group>"; };
+		8952CF731BF72FD0009BE601 /* WdCleanCaches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WdCleanCaches.m; sourceTree = "<group>"; };
 		89FF89771BF3635B0026B532 /* DownLoadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadModel.h; sourceTree = "<group>"; };
 		89FF89781BF3635B0026B532 /* DownLoadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadModel.m; sourceTree = "<group>"; };
 		89FF897A1BF363910026B532 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -243,6 +254,7 @@
 		8935C0F41BF1005900C4E220 /* Iib */ = {
 			isa = PBXGroup;
 			children = (
+				8952CF6F1BF72FD0009BE601 /* ClearCache */,
 				8935C14D1BF103B600C4E220 /* FMDB */,
 				8935C15E1BF103D600C4E220 /* DataBaseTool */,
 				8935C0F51BF1005900C4E220 /* ASIHTTPRequest */,
@@ -326,6 +338,15 @@
 			path = DataBaseTool;
 			sourceTree = "<group>";
 		};
+		8952CF6F1BF72FD0009BE601 /* ClearCache */ = {
+			isa = PBXGroup;
+			children = (
+				8952CF721BF72FD0009BE601 /* WdCleanCaches.h */,
+				8952CF731BF72FD0009BE601 /* WdCleanCaches.m */,
+			);
+			path = ClearCache;
+			sourceTree = "<group>";
+		};
 		89FF89831BF39A050026B532 /* Class */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +362,8 @@
 			children = (
 				89FF89851BF39A050026B532 /* DownManagerViewController.h */,
 				89FF89861BF39A050026B532 /* DownManagerViewController.m */,
+				8952CF671BF7282B009BE601 /* DowningController.h */,
+				8952CF681BF7282B009BE601 /* DowningController.m */,
 				89FF89871BF39A050026B532 /* FilesViewController.h */,
 				89FF89881BF39A050026B532 /* FilesViewController.m */,
 			);
@@ -364,6 +387,9 @@
 				8952CF621BF6E196009BE601 /* DownloadedCell.h */,
 				8952CF631BF6E196009BE601 /* DownloadedCell.m */,
 				8952CF641BF6E196009BE601 /* DownloadedCell.xib */,
+				8952CF6A1BF72DD6009BE601 /* DowningCell.h */,
+				8952CF6B1BF72DD6009BE601 /* DowningCell.m */,
+				8952CF6C1BF72DD6009BE601 /* DowningCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -472,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8952CF661BF6E196009BE601 /* DownloadedCell.xib in Resources */,
+				8952CF6E1BF72DD6009BE601 /* DowningCell.xib in Resources */,
 				8935C0D11BF0FFC800C4E220 /* LaunchScreen.storyboard in Resources */,
 				8935C0CE1BF0FFC800C4E220 /* Assets.xcassets in Resources */,
 				8935C0CC1BF0FFC800C4E220 /* Main.storyboard in Resources */,
@@ -519,12 +546,15 @@
 				8935C1181BF1005900C4E220 /* ASINSStringAdditions.m in Sources */,
 				89FF898F1BF39A2E0026B532 /* FilesCell.m in Sources */,
 				8935C11A1BF1005900C4E220 /* Reachability.m in Sources */,
+				8952CF6D1BF72DD6009BE601 /* DowningCell.m in Sources */,
 				8935C15A1BF103B600C4E220 /* FMDatabaseAdditions.m in Sources */,
 				8935C1611BF103D600C4E220 /* DatabaseTool.m in Sources */,
 				8935C1121BF1005900C4E220 /* ASIDataDecompressor.m in Sources */,
 				89FF89791BF3635B0026B532 /* DownLoadModel.m in Sources */,
 				8935C15C1BF103B600C4E220 /* FMDatabaseQueue.m in Sources */,
 				8935C15B1BF103B600C4E220 /* FMDatabasePool.m in Sources */,
+				8952CF691BF7282B009BE601 /* DowningController.m in Sources */,
+				8952CF751BF72FD0009BE601 /* WdCleanCaches.m in Sources */,
 				8935C1131BF1005900C4E220 /* ASIDownloadCache.m in Sources */,
 				8952CF651BF6E196009BE601 /* DownloadedCell.m in Sources */,
 				8935C1191BF1005900C4E220 /* NSHTTPCookieAdditions.m in Sources */,

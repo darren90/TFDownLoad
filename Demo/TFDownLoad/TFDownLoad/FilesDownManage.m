@@ -343,6 +343,7 @@ static   FilesDownManage *sharedFilesDownManage = nil;
     _fileInfo.fileName = name;
     _fileInfo.fileURL = downUrl;
     _fileInfo.iconUrl = iconUrl;
+    _fileInfo.title = title;
     if ([_fileInfo.fileURL containsString:@"m3u8"]) {
         _fileInfo.urlType = FileUrlM3u8;
     }else{

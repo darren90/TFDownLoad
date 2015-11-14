@@ -8,6 +8,7 @@
 
 #import "DownManagerViewController.h"
 #import "DownloadedCell.h"
+#import "DowningController.h"
 
 @interface DownManagerViewController ()
 @property (nonatomic,strong)NSMutableArray *dataArray;
@@ -18,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    self.tableView.rowHeight = 60;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -41,8 +42,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;
+    }else{
+        return self.dataArray.count;
     }
-    return self.dataArray.count;
 }
 
 
@@ -57,12 +59,20 @@
         if(cell == nil){
             cell = [[[NSBundle mainBundle]loadNibNamed:@"DownloadedCell" owner:nil options:nil]lastObject];
         }
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.dataArray[indexPath.row];
         return cell;
     }
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {//downingVc
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        DowningController *downingVc = [sb instantiateViewControllerWithIdentifier:@"downingVc"];
+        [self.navigationController pushViewController:downingVc animated:YES];
+    }
+}
 
 
 

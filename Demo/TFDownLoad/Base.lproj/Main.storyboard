@@ -170,10 +170,42 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="kxs-Ed-cUG"/>
+                    <connections>
+                        <segue destination="We6-Sg-9sH" kind="push" identifier="downingVc" id="l5u-dl-s4M"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jLp-uf-azA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-236" y="1070"/>
+        </scene>
+        <!--Downing Controller-->
+        <scene sceneID="vtn-Im-i9F">
+            <objects>
+                <tableViewController storyboardIdentifier="downingVc" id="We6-Sg-9sH" customClass="DowningController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6MQ-0C-4fd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="dtX-18-Zjy">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dtX-18-Zjy" id="UB5-No-Dni">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="We6-Sg-9sH" id="ILk-j3-SlG"/>
+                            <outlet property="delegate" destination="We6-Sg-9sH" id="QGZ-BP-YQa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="cI0-6s-MXt"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c99-AS-rOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="343" y="1082"/>
         </scene>
         <!--下载列表-->
         <scene sceneID="8gG-jw-UI8">
