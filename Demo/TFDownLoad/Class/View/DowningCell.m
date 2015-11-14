@@ -12,6 +12,8 @@
 #import "CommonHelper.h"
 #import "WdCleanCaches.h"
 #import "FilesDownManage.h"
+#import "NSString+TF.h"
+#import "DowningController.h"
 
 @interface DowningCell()
 @property (nonatomic,weak)IBOutlet UIImageView * iconView;
@@ -30,7 +32,7 @@
 }
 
 
--(void)downBtnClick:(UIButton *)btn
+-(IBAction)downBtnClick:(UIButton *)btn
 {
     [self operateTask];
 }
@@ -61,7 +63,7 @@
     
     NSString *currentsize = [CommonHelper getFileSizeString:[NSString stringWithFormat:@"%f",downedSize]];
     NSString *totalsize = [CommonHelper getFileSizeString:fileInfo.fileSize];
-    self.nameLabel.text = fileInfo.fileName;
+    self.nameLabel.text = fileInfo.title;
     self.iconView.image = [UIImage imageNamed:fileInfo.iconUrl];
  
     NSMutableString *sizeStr = [NSMutableString stringWithFormat:@"已下载 : %@ / ",currentsize];
@@ -130,4 +132,15 @@
         [((DowningController*)self.cDelegate) ReloadDownLoadingTable];
 }
 
+
+- (void)drawRect:(CGRect)rect 
+{
+    CGFloat lineHeight = 0.4;
+    CGFloat cellHetht = self.frame.size.height;
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextMoveToPoint(ctx, 0, cellHetht - lineHeight);
+    CGContextAddLineToPoint(ctx, self.contentView.frame.size.width, cellHetht - lineHeight);
+    CGContextSetRGBStrokeColor(ctx, 0.88, 0.88, 0.88, 1.0);
+    CGContextStrokePath(ctx);
+}
 @end

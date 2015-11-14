@@ -10,4 +10,5 @@
 
 @interface DowningController : UITableViewController
 
+-(void)ReloadDownLoadingTable;
 @end

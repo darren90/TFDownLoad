@@ -43,7 +43,12 @@
     if(cell == nil){
         cell = [[[NSBundle mainBundle]loadNibNamed:@"DowningCell" owner:nil options:nil]lastObject];
     }
-//    cell.model = self.downingList[indexPath.row];
+    cell.cDelegate = self;
+    ASIHTTPRequest *theRequest = self.downingList[indexPath.row];
+    if (theRequest == nil) {
+        return cell = Nil;
+    }
+    cell.request = theRequest;
     return cell;
 }
 

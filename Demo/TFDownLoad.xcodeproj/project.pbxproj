@@ -42,6 +42,7 @@
 		8952CF6D1BF72DD6009BE601 /* DowningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952CF6B1BF72DD6009BE601 /* DowningCell.m */; };
 		8952CF6E1BF72DD6009BE601 /* DowningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8952CF6C1BF72DD6009BE601 /* DowningCell.xib */; };
 		8952CF751BF72FD0009BE601 /* WdCleanCaches.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952CF731BF72FD0009BE601 /* WdCleanCaches.m */; };
+		8959A81C1BF739D7003071DD /* NSString+TF.m in Sources */ = {isa = PBXBuildFile; fileRef = 8959A81B1BF739D7003071DD /* NSString+TF.m */; };
 		89FF89791BF3635B0026B532 /* DownLoadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89781BF3635B0026B532 /* DownLoadModel.m */; };
 		89FF897C1BF36BC30026B532 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FF897B1BF36BC30026B532 /* libsqlite3.tbd */; };
 		89FF898B1BF39A050026B532 /* DownManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89861BF39A050026B532 /* DownManagerViewController.m */; };
@@ -141,6 +142,8 @@
 		8952CF6C1BF72DD6009BE601 /* DowningCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DowningCell.xib; sourceTree = "<group>"; };
 		8952CF721BF72FD0009BE601 /* WdCleanCaches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WdCleanCaches.h; sourceTree = "<group>"; };
 		8952CF731BF72FD0009BE601 /* WdCleanCaches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WdCleanCaches.m; sourceTree = "<group>"; };
+		8959A81A1BF739D7003071DD /* NSString+TF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TF.h"; sourceTree = "<group>"; };
+		8959A81B1BF739D7003071DD /* NSString+TF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TF.m"; sourceTree = "<group>"; };
 		89FF89771BF3635B0026B532 /* DownLoadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadModel.h; sourceTree = "<group>"; };
 		89FF89781BF3635B0026B532 /* DownLoadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadModel.m; sourceTree = "<group>"; };
 		89FF897A1BF363910026B532 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 		8952CF6F1BF72FD0009BE601 /* ClearCache */ = {
 			isa = PBXGroup;
 			children = (
+				8959A81A1BF739D7003071DD /* NSString+TF.h */,
+				8959A81B1BF739D7003071DD /* NSString+TF.m */,
 				8952CF721BF72FD0009BE601 /* WdCleanCaches.h */,
 				8952CF731BF72FD0009BE601 /* WdCleanCaches.m */,
 			);
@@ -545,6 +550,7 @@
 				8935C1171BF1005900C4E220 /* ASINetworkQueue.m in Sources */,
 				8935C1181BF1005900C4E220 /* ASINSStringAdditions.m in Sources */,
 				89FF898F1BF39A2E0026B532 /* FilesCell.m in Sources */,
+				8959A81C1BF739D7003071DD /* NSString+TF.m in Sources */,
 				8935C11A1BF1005900C4E220 /* Reachability.m in Sources */,
 				8952CF6D1BF72DD6009BE601 /* DowningCell.m in Sources */,
 				8935C15A1BF103B600C4E220 /* FMDatabaseAdditions.m in Sources */,
