@@ -42,7 +42,6 @@
 		8952CF6E1BF72DD6009BE601 /* DowningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8952CF6C1BF72DD6009BE601 /* DowningCell.xib */; };
 		8952CF751BF72FD0009BE601 /* WdCleanCaches.m in Sources */ = {isa = PBXBuildFile; fileRef = 8952CF731BF72FD0009BE601 /* WdCleanCaches.m */; };
 		8959A81C1BF739D7003071DD /* NSString+TF.m in Sources */ = {isa = PBXBuildFile; fileRef = 8959A81B1BF739D7003071DD /* NSString+TF.m */; };
-		8959A81E1BF73C95003071DD /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 8959A81D1BF73C95003071DD /* README.md */; };
 		89FF897C1BF36BC30026B532 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FF897B1BF36BC30026B532 /* libsqlite3.tbd */; };
 		89FF898B1BF39A050026B532 /* DownManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89861BF39A050026B532 /* DownManagerViewController.m */; };
 		89FF898C1BF39A050026B532 /* FilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89FF89881BF39A050026B532 /* FilesViewController.m */; };
@@ -141,7 +140,6 @@
 		8952CF731BF72FD0009BE601 /* WdCleanCaches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WdCleanCaches.m; sourceTree = "<group>"; };
 		8959A81A1BF739D7003071DD /* NSString+TF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TF.h"; sourceTree = "<group>"; };
 		8959A81B1BF739D7003071DD /* NSString+TF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TF.m"; sourceTree = "<group>"; };
-		8959A81D1BF73C95003071DD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		89FF897A1BF363910026B532 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		89FF897B1BF36BC30026B532 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		89FF89851BF39A050026B532 /* DownManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownManagerViewController.h; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 		8935C0B51BF0FFC800C4E220 = {
 			isa = PBXGroup;
 			children = (
-				8959A81D1BF73C95003071DD /* README.md */,
 				89FF897A1BF363910026B532 /* PrefixHeader.pch */,
 				8935C0C01BF0FFC800C4E220 /* TFDownLoad */,
 				8935C0DA1BF0FFC800C4E220 /* TFDownLoadTests */,
@@ -550,7 +547,6 @@
 				8935C1121BF1005900C4E220 /* ASIDataDecompressor.m in Sources */,
 				8935C15C1BF103B600C4E220 /* FMDatabaseQueue.m in Sources */,
 				8935C15B1BF103B600C4E220 /* FMDatabasePool.m in Sources */,
-				8959A81E1BF73C95003071DD /* README.md in Sources */,
 				8952CF691BF7282B009BE601 /* DowningController.m in Sources */,
 				8952CF751BF72FD0009BE601 /* WdCleanCaches.m in Sources */,
 				8935C1131BF1005900C4E220 /* ASIDownloadCache.m in Sources */,
