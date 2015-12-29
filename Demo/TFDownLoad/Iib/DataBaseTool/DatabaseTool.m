@@ -12,7 +12,6 @@
 
 //下载
 #import "FileModel.h"
-#import "CommonHelper.h"
 #import "ContentModel.h"
 
 static FMDatabase *_db;
