@@ -1,0 +1,6 @@
+framework module TFDownLoad {
+  umbrella header "TFDownLoad-umbrella.h"
+
+  export *
+  module * { export * }
+}

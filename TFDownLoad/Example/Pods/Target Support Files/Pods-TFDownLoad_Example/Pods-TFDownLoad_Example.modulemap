@@ -1,0 +1,6 @@
+framework module Pods_TFDownLoad_Example {
+  umbrella header "Pods-TFDownLoad_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

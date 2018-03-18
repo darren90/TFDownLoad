@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'TFDownLoad_Example' do
+  pod 'TFDownLoad', :path => '../'
+
+  target 'TFDownLoad_Tests' do
+    inherit! :search_paths
+
+    pod 'Kiwi'
+    pod 'FBSnapshotTestCase'
+  end
+end
