@@ -10,3 +10,9 @@
 @implementation TFDownloadModel
 
 @end
+
+
+
+@implementation TFDownloadProgress
+
+@end

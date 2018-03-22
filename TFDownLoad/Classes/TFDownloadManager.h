@@ -8,14 +8,26 @@
 #import <Foundation/Foundation.h>
 #import "TFDownloadModel.h"
 
+// 下载代理
+@protocol TFDownloadDelegate <NSObject>
+
+// 更新下载进度
+- (void)downloadModel:(TFDownloadModel *)downloadModel didUpdateProgress:(TFDownloadProgress *)progress error:(NSError *)error;
+
+// 下载完毕
+- (void)downloadDidCompleted:(TFDownloadModel *)downloadModel;
+
+@end
+
+
 @interface TFDownloadManager : NSObject
 
 
 // 下载中 + 等待中的模型 只读
-@property (nonatomic, strong,readonly) NSMutableArray *downloadAllModels;
+@property (nonatomic, strong,readonly) NSMutableArray<TFDownloadModel *> *downloadAllModels;
 
 // 下载代理
-//@property (nonatomic,weak) id<RRDownloadDelegate> delegate;
+@property (nonatomic,weak) id<TFDownloadDelegate> delegate;
 
 // 单例
 + (TFDownloadManager *)manager;
