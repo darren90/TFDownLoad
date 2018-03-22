@@ -1,0 +1,16 @@
+PODS:
+  - TFDownLoad (0.1.0)
+
+DEPENDENCIES:
+  - TFDownLoad (from `../`)
+
+EXTERNAL SOURCES:
+  TFDownLoad:
+    :path: ../
+
+SPEC CHECKSUMS:
+  TFDownLoad: fd7c979c659979e2db58c6f20f703c14ce78d50b
+
+PODFILE CHECKSUM: cead35e79d1d9f638a4b514f5d34746140368eac
+
+COCOAPODS: 1.3.1

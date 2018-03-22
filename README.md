@@ -1,19 +1,29 @@
-# TFDownLoad-Manager
+# TFDownLoad
 
+[![CI Status](http://img.shields.io/travis/1005052145@qq.com/TFDownLoad.svg?style=flat)](https://travis-ci.org/1005052145@qq.com/TFDownLoad)
+[![Version](https://img.shields.io/cocoapods/v/TFDownLoad.svg?style=flat)](http://cocoapods.org/pods/TFDownLoad)
+[![License](https://img.shields.io/cocoapods/l/TFDownLoad.svg?style=flat)](http://cocoapods.org/pods/TFDownLoad)
+[![Platform](https://img.shields.io/cocoapods/p/TFDownLoad.svg?style=flat)](http://cocoapods.org/pods/TFDownLoad)
 
----
+## Example
 
-- 项目使用的ASI封装的HTTP请求，进行HTTP的下载文件，（）理论上可以下载任何使用HTTP协议的文件）
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-- 界面上仿照市面上，多数视频应用的下载功能，同时能在进度上跟新UI界面，使用很流畅
+## Requirements
 
-- 数据信息采用了FMDB储存在本地，能够记录下载进度等信息
+## Installation
 
-- 程序的复用性很高
+TFDownLoad is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
- 
----
+```ruby
+pod 'TFDownLoad'
+```
 
-参照[Demo](http://code4app.com/ios/DownLoadManager/52a3248dcb7e84c30d8b5a8a),Demo中使用的是MRC并且存在一定的bug，现已经修改为ARC，并且修复bug。
- 
----
+## Author
+
+1005052145@qq.com, 1005052145@qq.com
+
+## License
+
+TFDownLoad is available under the MIT license. See the LICENSE file for more info.
