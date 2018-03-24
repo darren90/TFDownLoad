@@ -36,6 +36,10 @@
 /* 用于计数 -- 不让进度调用的方法过于频繁 */
 @property (nonatomic,assign)NSInteger timesCount;
 
+
+/** 保存上次的下载信息 */
+@property (nonatomic, strong) NSData *resumeData;
+
 @end
 
 #define IS_IOS8ORLATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
@@ -62,7 +66,7 @@
 
 
 - (void)startDownload:(TFDownloadModel *)downloadModel {
-    if(downloadModel.downloadUrl.length > 0){
+    if(downloadModel.downloadUrl.length == 0){
         NSLog(@"下载地址不可以为空");
         return;
     }
@@ -84,7 +88,6 @@
     if (downloadModel.downloadUrl.length == 0) return;
     if (![self canResumeDownload:downloadModel]) return;
     
-    [self downloadModel:downloadModel progress:nil state:TFDownloadStateRunning error:nil];
     
     NSString *tempPath = @"";
     NSString *filePath = @"";
@@ -101,9 +104,10 @@
 //    downloadModel.stream = [NSOutputStream outputStreamToFileAtPath:downloadModel.tempPath append:YES];
     
     // 创建一个Data任务
-    downloadModel.task = [self.session dataTaskWithRequest:request];
     downloadModel.task = [self.session downloadTaskWithRequest:request];
     downloadModel.task.taskDescription = downloadModel.downloadUrl;
+    [downloadModel.task resume];
+    [self downloadModel:downloadModel progress:nil state:TFDownloadStateRunning error:nil];
 }
 
 - (BOOL)canResumeDownload:(TFDownloadModel *)downloadModel {
@@ -171,11 +175,7 @@
 
 #pragma mark - NSURLSessionDownloadDelegate
 
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
-didFinishDownloadingToURL:(NSURL *)location {
-    NSLog(@"%@",location.absoluteString);
-}
-
+//  1 - 监听文件下载进度
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
       didWriteData:(int64_t)bytesWritten
  totalBytesWritten:(int64_t)totalBytesWritten
@@ -183,11 +183,24 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     NSLog(@"%@",downloadTask);
 
 }
-
+// 恢复下载
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
  didResumeAtOffset:(int64_t)fileOffset
 expectedTotalBytes:(int64_t)expectedTotalBytes {
     NSLog(@"%@",downloadTask);
+//    downloadTask.user   
+ 
+}
+// 5 - 下载成功
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+didFinishDownloadingToURL:(NSURL *)location {
+    NSLog(@"%@",location.absoluteString);
+}
+// 6 - 下载完成
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    self.resumeData = error.userInfo[NSURLSessionDownloadTaskResumeData];
+    NSLog(@"didCompleteWithError : %@",task);
+    NSLog(@"resumeData : %@",self.resumeData);
 
 }
 

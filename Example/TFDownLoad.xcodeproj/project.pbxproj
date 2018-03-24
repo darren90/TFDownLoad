@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1C042BCC94CA83DE0B6E8C34 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		1C042BCC94CA83DE0B6E8C34 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		5D4F17E1AF73967DA1FABF76 /* Pods_TFDownLoad_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TFDownLoad_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* TFDownLoad_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFDownLoad_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,12 +58,12 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		85FBD491A9FD94938B89F1DD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		85FBD491A9FD94938B89F1DD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A2818CCF07854F42CF04C577 /* Pods-TFDownLoad_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TFDownLoad_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TFDownLoad_Example/Pods-TFDownLoad_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDFE2E05CA27FACB7045A65 /* Pods-TFDownLoad_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TFDownLoad_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TFDownLoad_Example/Pods-TFDownLoad_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E85966F300E58336B76B3378 /* Pods_TFDownLoad_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TFDownLoad_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA827E139F27D816EDDFC51D /* TFDownLoad.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = TFDownLoad.podspec; path = ../TFDownLoad.podspec; sourceTree = "<group>"; };
+		FA827E139F27D816EDDFC51D /* TFDownLoad.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TFDownLoad.podspec; path = ../TFDownLoad.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
