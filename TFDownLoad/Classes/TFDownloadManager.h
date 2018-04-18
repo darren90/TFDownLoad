@@ -35,20 +35,21 @@
 // 开始下载
 - (void)startDownload:(TFDownloadModel *)downloadModel;
 
+
+
 // 恢复下载（除非确定对这个model进行了suspend，否则使用start）
-- (void)resumeDownload:(TFDownloadModel *)downloadModel;
+//- (void)resumeDownload:(TFDownloadModel *)downloadModel;
 
 // 恢复全部的下载任务
-- (void)resumeAllTasks;
+//- (void)resumeAllTasks;
+- (void)startAllDownloadTasks;
+
 
 // 暂停下载
 - (void)suspendload:(TFDownloadModel *)downloadModel;
 
 // 暂停所有的下载
 -(void)suspendAllTasks;
-
-// 等待下载
-//- (void)waitDownload:(TFDownloadModel *)downloadModel;
 
 // 删除下载
 - (void)deleteDownload:(TFDownloadModel *)downloadModel;

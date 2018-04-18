@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0F8993E53C7CC396D48FD4ACF2F21EE8 /* TFDownLoad-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A446408307CDBA3EA8B68DF10F877DD /* TFDownLoad-dummy.m */; };
 		7019834C32C89C849EF1B6A473F254B1 /* Pods-TFDownLoad_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD82BC518EBA204E521DDD9A6485372 /* Pods-TFDownLoad_Example-dummy.m */; };
+		891E7C032067596100730BF1 /* TFDownloadTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 891E7C012067596100730BF1 /* TFDownloadTools.h */; };
+		891E7C042067596100730BF1 /* TFDownloadTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 891E7C022067596100730BF1 /* TFDownloadTools.m */; };
 		9D1E518C7ECC25758A9CAAB70F8AC301 /* TFDownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF835A7A3FDD3C0E3632E4A08A17920 /* TFDownloadModel.m */; };
 		9F93BA7909BDD815D1789F37AEA28497 /* TFDownloadModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 95152A2AF49432B3AB3A7BD7467B0057 /* TFDownloadModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A3125279D35E9DBEAD3F51DD95E8E09E /* Pods-TFDownLoad_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 77E552D628A9A195E871C956E79E5831 /* Pods-TFDownLoad_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,23 +37,25 @@
 		421DFC72B9E506571B526D1CA37E28E7 /* Pods-TFDownLoad_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TFDownLoad_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		47E0BD74BC957B879CE9950A8215F4CA /* Pods-TFDownLoad_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TFDownLoad_Example-resources.sh"; sourceTree = "<group>"; };
 		4B2A6A69E6E53C801E2BF84D16B24340 /* Pods-TFDownLoad_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TFDownLoad_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		5319512479B0A0C3022E57EAE1875468 /* Pods-TFDownLoad_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TFDownLoad_Example.modulemap"; sourceTree = "<group>"; };
-		57E60D9C09E38FA6EAA05153594E5227 /* Pods_TFDownLoad_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TFDownLoad_Example.framework; path = "Pods-TFDownLoad_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5319512479B0A0C3022E57EAE1875468 /* Pods-TFDownLoad_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TFDownLoad_Example.modulemap"; sourceTree = "<group>"; };
+		57E60D9C09E38FA6EAA05153594E5227 /* Pods_TFDownLoad_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TFDownLoad_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58B8041B379C05168CB0D4E39DC7EAF0 /* TFDownLoad.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TFDownLoad.xcconfig; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6BD4FEC717ED3A261F3092FC0B1B9D0C /* TFDownLoad.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TFDownLoad.modulemap; sourceTree = "<group>"; };
+		6BD4FEC717ED3A261F3092FC0B1B9D0C /* TFDownLoad.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TFDownLoad.modulemap; sourceTree = "<group>"; };
 		76D3EDB94A213CB72AFF0C93B36DDAA4 /* TFDownLoad-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TFDownLoad-prefix.pch"; sourceTree = "<group>"; };
 		77E552D628A9A195E871C956E79E5831 /* Pods-TFDownLoad_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TFDownLoad_Example-umbrella.h"; sourceTree = "<group>"; };
 		7EF835A7A3FDD3C0E3632E4A08A17920 /* TFDownloadModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TFDownloadModel.m; path = TFDownLoad/Classes/TFDownloadModel.m; sourceTree = "<group>"; };
 		847B1522A1E0F7C3621C45562116E7E3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		891E7C012067596100730BF1 /* TFDownloadTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TFDownloadTools.h; path = TFDownLoad/Classes/TFDownloadTools.h; sourceTree = "<group>"; };
+		891E7C022067596100730BF1 /* TFDownloadTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TFDownloadTools.m; path = TFDownLoad/Classes/TFDownloadTools.m; sourceTree = "<group>"; };
 		89E261D9783BDD9CCB556009393F96B2 /* TFDownloadManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TFDownloadManager.m; path = TFDownLoad/Classes/TFDownloadManager.m; sourceTree = "<group>"; };
 		8A446408307CDBA3EA8B68DF10F877DD /* TFDownLoad-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TFDownLoad-dummy.m"; sourceTree = "<group>"; };
 		8BD82BC518EBA204E521DDD9A6485372 /* Pods-TFDownLoad_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TFDownLoad_Example-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		95152A2AF49432B3AB3A7BD7467B0057 /* TFDownloadModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TFDownloadModel.h; path = TFDownLoad/Classes/TFDownloadModel.h; sourceTree = "<group>"; };
 		96139D5A514690DF3B2B67A8B775DAD1 /* Pods-TFDownLoad_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TFDownLoad_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A1634A3DFE63452065FE3EACB5F3174A /* Pods-TFDownLoad_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TFDownLoad_Example-frameworks.sh"; sourceTree = "<group>"; };
-		C70BDDB6B31214E8ED8F3901A8FC78E4 /* TFDownLoad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TFDownLoad.framework; path = TFDownLoad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C70BDDB6B31214E8ED8F3901A8FC78E4 /* TFDownLoad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TFDownLoad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD17A9F1A2DF5BD6BB81BFDA8309E138 /* Pods-TFDownLoad_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TFDownLoad_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D6B04A9F186C38A8361C23577ACB6D07 /* TFDownLoad-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TFDownLoad-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +96,8 @@
 				95152A2AF49432B3AB3A7BD7467B0057 /* TFDownloadModel.h */,
 				7EF835A7A3FDD3C0E3632E4A08A17920 /* TFDownloadModel.m */,
 				D684E782A8870C98BC9B581DDC8B71AC /* Support Files */,
+				891E7C012067596100730BF1 /* TFDownloadTools.h */,
+				891E7C022067596100730BF1 /* TFDownloadTools.m */,
 			);
 			name = TFDownLoad;
 			path = ../..;
@@ -180,6 +186,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				891E7C032067596100730BF1 /* TFDownloadTools.h in Headers */,
 				A3125279D35E9DBEAD3F51DD95E8E09E /* Pods-TFDownLoad_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7019834C32C89C849EF1B6A473F254B1 /* Pods-TFDownLoad_Example-dummy.m in Sources */,
+				891E7C042067596100730BF1 /* TFDownloadTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

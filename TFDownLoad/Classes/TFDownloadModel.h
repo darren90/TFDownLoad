@@ -17,6 +17,12 @@ typedef NS_ENUM(NSUInteger, TFDownloadState) {
     TFDownloadStateFailed       // 下载失败
 };
 
+typedef NS_ENUM(NSUInteger, UrlType) {
+    UrlHttp = 1,     // http下载链接
+    UrlM3u8 = 2,     // m3u8下载链接
+    UrlList = 3,     // m3u8下载链接
+};
+
 @class TFDownloadProgress;
 // 进度更新block
 //typedef void (^RRDownloadProgressBlock)(TTDownloadProgress *progress);
@@ -54,6 +60,12 @@ typedef void (^TFDownloadUpdateBlock)(TFDownloadProgress *progress,TFDownloadSta
 
 // 下载任务
 @property (nonatomic, strong) NSURLSessionTask *task;
+@property (nonatomic, strong ,readonly) TFDownloadProgress *progress;
+
+// 下载时间
+@property (nonatomic, strong) NSDate *downloadDate;
+
+@property (nonatomic, assign) UrlType urlType;
 
 @end
 
@@ -75,7 +87,7 @@ typedef void (^TFDownloadUpdateBlock)(TFDownloadProgress *progress,TFDownloadSta
 @property (nonatomic, assign) int64_t totalBytesExpectedToWrite;
 // 下载进度
 @property (nonatomic, assign) float progress;
-// 下载速度
+// 下载速度  M/s
 @property (nonatomic, assign) float speed;
 // 下载剩余时间
 @property (nonatomic, assign) int remainingTime;

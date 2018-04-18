@@ -23,6 +23,8 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		898C5BEE20855C53000ECC37 /* TFMultiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898C5BED20855C53000ECC37 /* TFMultiViewController.m */; };
+		898C5BF120855E17000ECC37 /* TFMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898C5BF020855E17000ECC37 /* TFMultiCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85FBD491A9FD94938B89F1DD /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		898C5BEC20855C53000ECC37 /* TFMultiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFMultiViewController.h; sourceTree = "<group>"; };
+		898C5BED20855C53000ECC37 /* TFMultiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFMultiViewController.m; sourceTree = "<group>"; };
+		898C5BEF20855E17000ECC37 /* TFMultiCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFMultiCell.h; sourceTree = "<group>"; };
+		898C5BF020855E17000ECC37 /* TFMultiCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFMultiCell.m; sourceTree = "<group>"; };
 		A2818CCF07854F42CF04C577 /* Pods-TFDownLoad_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TFDownLoad_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TFDownLoad_Example/Pods-TFDownLoad_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDFE2E05CA27FACB7045A65 /* Pods-TFDownLoad_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TFDownLoad_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TFDownLoad_Example/Pods-TFDownLoad_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E85966F300E58336B76B3378 /* Pods_TFDownLoad_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TFDownLoad_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +139,10 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* TFViewController.h */,
 				6003F5A6195388D20070C39A /* TFViewController.m */,
+				898C5BEC20855C53000ECC37 /* TFMultiViewController.h */,
+				898C5BED20855C53000ECC37 /* TFMultiViewController.m */,
+				898C5BEF20855E17000ECC37 /* TFMultiCell.h */,
+				898C5BF020855E17000ECC37 /* TFMultiCell.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -348,6 +358,8 @@
 			files = (
 				6003F59E195388D20070C39A /* TFAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* TFViewController.m in Sources */,
+				898C5BF120855E17000ECC37 /* TFMultiCell.m in Sources */,
+				898C5BEE20855C53000ECC37 /* TFMultiViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
