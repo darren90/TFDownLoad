@@ -41,6 +41,8 @@
 /** 保存上次的下载信息 */
 @property (nonatomic, strong) NSData *resumeData;
 
+@property (nonatomic, strong) NSOutputStream *stream;
+
 @end
 
 #define IS_IOS8ORLATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8)
@@ -154,6 +156,11 @@
     //suspend  无错误返回
     [(NSURLSessionDownloadTask *)downloadModel.task cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
 //        [self saveTempFile:downloadModel.tempPath resumeData:resumeData];
+        NSLog(@"pause resumeData: %@",resumeData);
+        if (resumeData) {
+            [self saveTempFile:downloadModel.tempPath resumeData:resumeData];
+        }
+        
     }];
     [self.downloadingModels removeAllObjects];
     
@@ -313,8 +320,7 @@ expectedTotalBytes:(int64_t)expectedTotalBytes {
  
 }
 // 5 - 下载成功
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
-didFinishDownloadingToURL:(NSURL *)location {
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
     NSLog(@"didFinishDownloadingToURL - %@",location.absoluteString);
     TFDownloadModel *downloadModel = [self downLoadingModelForURLString:downloadTask.taskDescription];
     [self moveFileAtURL:location toPath:downloadModel.filePath];
@@ -322,11 +328,17 @@ didFinishDownloadingToURL:(NSURL *)location {
 // 6 - 下载完成 调用cancle的时候也走这个方法
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     NSData *resumeData = error.userInfo[NSURLSessionDownloadTaskResumeData];
-    NSLog(@"didCompleteWithError : %@" ,task);
-    NSLog(@"resumeData : %@" ,@(resumeData.length));
-    
     TFDownloadModel *downloadModel = [self downLoadingModelForURLString:task.taskDescription];
     if (!downloadModel) {   return;  }
+    
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    [fileManager createFileAtPath:downloadModel.tempPath contents:resumeData attributes:nil];
+    
+    NSLog(@"didCompleteWithError : %@" ,task);
+    NSLog(@"resumeData : %@" ,@(resumeData.length));
+//    _stream = [NSOutputStream outputStreamToFileAtPath:downloadModel.tempPath append:YES];
+
+    //TODO - save resumeData
     
     if (resumeData) {
         [self saveTempFile:downloadModel.tempPath resumeData:resumeData];
@@ -462,15 +474,30 @@ didFinishDownloadingToURL:(NSURL *)location {
 
 - (NSURLSession *)session {
     if (!_session) {
-        if (IS_IOS8ORLATER) {
-            NSURLSessionConfiguration *configure = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"DownloadSessionManager.backgroundConfigure"];
-            _session = [NSURLSession sessionWithConfiguration:configure delegate:self delegateQueue:self.queue];
-        }else{
-            _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration backgroundSessionConfiguration:@"DownloadSessionManager.backgroundConfigure"]delegate:self delegateQueue:self.queue];
-        }
+        
+//        if (IS_IOS8ORLATER) {
+//            NSURLSessionConfiguration *configure = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"DownloadSessionManager.backgroundConfigure"];
+//            _session = [NSURLSession sessionWithConfiguration:configure delegate:self delegateQueue:self.queue];
+//        }else{
+//            _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration backgroundSessionConfiguration:@"DownloadSessionManager.backgroundConfigure"]delegate:self delegateQueue:self.queue];
+//        }
+        
+        NSString *identifier = [self backgroundSessionIdentifier];
+        NSURLSessionConfiguration* sessionConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:identifier];
+        sessionConfig.allowsCellularAccess = NO;//[[NSUserDefaults standardUserDefaults] boolForKey:kIsAllowCellar];
+        _session = [NSURLSession sessionWithConfiguration:sessionConfig
+                                                delegate:self
+                                           delegateQueue:[NSOperationQueue mainQueue]];
     }
     return _session;
 }
+
+- (NSString *)backgroundSessionIdentifier {
+    NSString *bundleId = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    NSString *identifier = [NSString stringWithFormat:@"%@.BackgroundSession", bundleId];
+    return identifier;
+}
+
 
 - (NSOperationQueue *)queue {
     if (!_queue) {

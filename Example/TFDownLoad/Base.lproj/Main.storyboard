@@ -22,33 +22,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7Z-Bw-HKz">
-                                <rect key="frame" x="175" y="213" width="39" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Down"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7Z-Bw-HKz">
+                                <rect key="frame" x="171" y="169" width="34" height="74"/>
+                                <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="downloadAction:" destination="whP-gf-Uak" eventType="touchUpInside" id="h8d-UR-G6p"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-Wj-Ykq">
-                                <rect key="frame" x="163" y="318" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Continue"/>
-                                <connections>
-                                    <action selector="continueAction:" destination="whP-gf-Uak" eventType="touchUpInside" id="Zfp-OT-1AU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEs-B9-gk1">
-                                <rect key="frame" x="173" y="261" width="42" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEs-B9-gk1">
+                                <rect key="frame" x="166.5" y="261" width="42" height="30"/>
                                 <state key="normal" title="Pause"/>
                                 <connections>
                                     <action selector="pauseAction:" destination="whP-gf-Uak" eventType="touchUpInside" id="VQZ-rO-pAk"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-XV-cdR">
-                                <rect key="frame" x="96" y="146" width="231" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0TZ-XV-cdR">
+                                <rect key="frame" x="46" y="146" width="283" height="5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="krm-42-h8Q"/>
+                                </constraints>
                             </progressView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k4p-Us-zhv">
                                 <rect key="frame" x="46" y="388" width="283" height="170"/>
@@ -60,12 +52,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eI-Wj-Ykq">
+                                <rect key="frame" x="156.5" y="309" width="62" height="30"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <action selector="continueAction:" destination="whP-gf-Uak" eventType="touchUpInside" id="Zfp-OT-1AU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="bEs-B9-gk1" firstAttribute="top" secondItem="n7Z-Bw-HKz" secondAttribute="bottom" constant="18" id="1wp-8k-RBb"/>
+                            <constraint firstItem="n7Z-Bw-HKz" firstAttribute="top" secondItem="0TZ-XV-cdR" secondAttribute="bottom" constant="18" id="4mf-Bh-QWl"/>
+                            <constraint firstItem="n7Z-Bw-HKz" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="FXj-u0-nfZ"/>
                             <constraint firstItem="k4p-Us-zhv" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leadingMargin" constant="30" id="GKy-Ro-TAy"/>
+                            <constraint firstItem="5eI-Wj-Ykq" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="Gmh-1C-vX8"/>
+                            <constraint firstItem="k4p-Us-zhv" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leadingMargin" constant="30" id="Hdb-OF-sgu"/>
+                            <constraint firstItem="bEs-B9-gk1" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="JRa-4t-W8L"/>
                             <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="k4p-Us-zhv" secondAttribute="bottom" constant="60" id="KlH-3C-QIX"/>
+                            <constraint firstItem="k4p-Us-zhv" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="OY8-0n-Z1N"/>
+                            <constraint firstItem="0TZ-XV-cdR" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="82" id="T7y-wq-RtH"/>
+                            <constraint firstItem="k4p-Us-zhv" firstAttribute="top" secondItem="5eI-Wj-Ykq" secondAttribute="bottom" constant="49" id="YDd-XM-eNt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="k4p-Us-zhv" secondAttribute="trailing" constant="30" id="hSH-uU-emb"/>
+                            <constraint firstItem="5eI-Wj-Ykq" firstAttribute="top" secondItem="bEs-B9-gk1" secondAttribute="bottom" constant="18" id="jIn-U3-DiS"/>
+                            <constraint firstItem="0TZ-XV-cdR" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leadingMargin" constant="30" id="raj-wX-Kr8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="k4p-Us-zhv" secondAttribute="trailing" constant="30" id="wPY-02-5HW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0TZ-XV-cdR" secondAttribute="trailing" constant="30" id="yqz-1b-PLG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="单个下载" id="m3A-6B-KcA"/>
@@ -117,6 +129,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="EJA-JA-N4q" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kcu-MC-XRQ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

@@ -49,8 +49,6 @@
     [[TFDownloadManager manager] startDownload:self.downloadModel];
 }
 
-
-
 // 更新下载进度
 - (void)downloadModel:(TFDownloadModel *)downloadModel didUpdateProgress:(TFDownloadProgress *)progress error:(NSError *)error {
     self.progressView.progress = progress.progress;

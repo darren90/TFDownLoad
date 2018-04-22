@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0F8993E53C7CC396D48FD4ACF2F21EE8 /* TFDownLoad-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A446408307CDBA3EA8B68DF10F877DD /* TFDownLoad-dummy.m */; };
 		7019834C32C89C849EF1B6A473F254B1 /* Pods-TFDownLoad_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD82BC518EBA204E521DDD9A6485372 /* Pods-TFDownLoad_Example-dummy.m */; };
+		891D9987208AD8EF00DB8386 /* TFM3u8DownloadManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 891D9985208AD8EF00DB8386 /* TFM3u8DownloadManager.h */; };
+		891D9988208AD8EF00DB8386 /* TFM3u8DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 891D9986208AD8EF00DB8386 /* TFM3u8DownloadManager.m */; };
+		891D998B208AD90D00DB8386 /* TFListDownloadManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 891D9989208AD90D00DB8386 /* TFListDownloadManager.h */; };
+		891D998C208AD90D00DB8386 /* TFListDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 891D998A208AD90D00DB8386 /* TFListDownloadManager.m */; };
 		891E7C032067596100730BF1 /* TFDownloadTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 891E7C012067596100730BF1 /* TFDownloadTools.h */; };
 		891E7C042067596100730BF1 /* TFDownloadTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 891E7C022067596100730BF1 /* TFDownloadTools.m */; };
 		9D1E518C7ECC25758A9CAAB70F8AC301 /* TFDownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF835A7A3FDD3C0E3632E4A08A17920 /* TFDownloadModel.m */; };
@@ -46,6 +50,10 @@
 		77E552D628A9A195E871C956E79E5831 /* Pods-TFDownLoad_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TFDownLoad_Example-umbrella.h"; sourceTree = "<group>"; };
 		7EF835A7A3FDD3C0E3632E4A08A17920 /* TFDownloadModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TFDownloadModel.m; path = TFDownLoad/Classes/TFDownloadModel.m; sourceTree = "<group>"; };
 		847B1522A1E0F7C3621C45562116E7E3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		891D9985208AD8EF00DB8386 /* TFM3u8DownloadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TFM3u8DownloadManager.h; path = TFDownLoad/Classes/TFM3u8DownloadManager.h; sourceTree = "<group>"; };
+		891D9986208AD8EF00DB8386 /* TFM3u8DownloadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TFM3u8DownloadManager.m; path = TFDownLoad/Classes/TFM3u8DownloadManager.m; sourceTree = "<group>"; };
+		891D9989208AD90D00DB8386 /* TFListDownloadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TFListDownloadManager.h; path = TFDownLoad/Classes/TFListDownloadManager.h; sourceTree = "<group>"; };
+		891D998A208AD90D00DB8386 /* TFListDownloadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TFListDownloadManager.m; path = TFDownLoad/Classes/TFListDownloadManager.m; sourceTree = "<group>"; };
 		891E7C012067596100730BF1 /* TFDownloadTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TFDownloadTools.h; path = TFDownLoad/Classes/TFDownloadTools.h; sourceTree = "<group>"; };
 		891E7C022067596100730BF1 /* TFDownloadTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TFDownloadTools.m; path = TFDownLoad/Classes/TFDownloadTools.m; sourceTree = "<group>"; };
 		89E261D9783BDD9CCB556009393F96B2 /* TFDownloadManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TFDownloadManager.m; path = TFDownLoad/Classes/TFDownloadManager.m; sourceTree = "<group>"; };
@@ -93,6 +101,10 @@
 			children = (
 				21B707897EA309FD0491C574DA607CB3 /* TFDownloadManager.h */,
 				89E261D9783BDD9CCB556009393F96B2 /* TFDownloadManager.m */,
+				891D9985208AD8EF00DB8386 /* TFM3u8DownloadManager.h */,
+				891D9986208AD8EF00DB8386 /* TFM3u8DownloadManager.m */,
+				891D9989208AD90D00DB8386 /* TFListDownloadManager.h */,
+				891D998A208AD90D00DB8386 /* TFListDownloadManager.m */,
 				95152A2AF49432B3AB3A7BD7467B0057 /* TFDownloadModel.h */,
 				7EF835A7A3FDD3C0E3632E4A08A17920 /* TFDownloadModel.m */,
 				D684E782A8870C98BC9B581DDC8B71AC /* Support Files */,
@@ -187,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				891E7C032067596100730BF1 /* TFDownloadTools.h in Headers */,
+				891D9987208AD8EF00DB8386 /* TFM3u8DownloadManager.h in Headers */,
 				A3125279D35E9DBEAD3F51DD95E8E09E /* Pods-TFDownLoad_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +210,7 @@
 			files = (
 				E9FC477819F3A295D5F87C871D45ABFC /* TFDownLoad-umbrella.h in Headers */,
 				FEF3233E2BCC19A8C541215EF917D9F4 /* TFDownloadManager.h in Headers */,
+				891D998B208AD90D00DB8386 /* TFListDownloadManager.h in Headers */,
 				9F93BA7909BDD815D1789F37AEA28497 /* TFDownloadModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +288,7 @@
 				0F8993E53C7CC396D48FD4ACF2F21EE8 /* TFDownLoad-dummy.m in Sources */,
 				DB9532F74D7BE24030DE166F592C82D8 /* TFDownloadManager.m in Sources */,
 				9D1E518C7ECC25758A9CAAB70F8AC301 /* TFDownloadModel.m in Sources */,
+				891D998C208AD90D00DB8386 /* TFListDownloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7019834C32C89C849EF1B6A473F254B1 /* Pods-TFDownLoad_Example-dummy.m in Sources */,
+				891D9988208AD8EF00DB8386 /* TFM3u8DownloadManager.m in Sources */,
 				891E7C042067596100730BF1 /* TFDownloadTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
